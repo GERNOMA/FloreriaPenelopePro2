@@ -24,7 +24,7 @@ export default async function Page() {
  
   return <main>
        <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            datassss
+          {JSON.stringify(data)}
           </p>
   </main>
   
