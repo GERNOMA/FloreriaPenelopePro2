@@ -3,6 +3,7 @@ import Image from 'next/image'
 async function getData() {
   const res = await fetch('https://6nnofqmbzl.execute-api.sa-east-1.amazonaws.com/futuretest', {
     method: 'POST',
+    cache: 'no-store'
   })
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
