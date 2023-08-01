@@ -25,3 +25,42 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.bigText{
+  font-size: 25px;
+}
+
+.squareImage{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.center{
+  margin: auto;
+  display: block; 
+}
+
+.centerText{
+  text-align: center;
+  display: block; 
+}
+
+.margin{
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.textInput{
+  padding: 10px;
+  color: black;
+  display: block;
+}
+
+.buttonInput{
+  margin: auto;
+  padding: 10px;
+  display: block;
+  background-color: green;
+}

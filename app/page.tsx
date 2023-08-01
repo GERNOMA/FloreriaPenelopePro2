@@ -1,6 +1,208 @@
-import Image from 'next/image'
+'use client';
+import { useState } from "react";
+import axios from "axios";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ['latin'] });
+
+const BUCKET_URL = "https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/";
 
 async function getData() {
+  const res = await fetch('https://6nnofqmbzl.execute-api.sa-east-1.amazonaws.com/floreriaWeb', {
+    method: 'POST',
+    cache: 'no-store'
+  })
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+ 
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+ 
+  return res.json()
+}
+
+export default function Home() {
+  const [file, setFile] = useState<any>();
+  const [uploadingStatus, setUploadingStatus] = useState<any>();
+  const [uploadedFile, setUploadedFile] = useState<any>();
+  const [uploadedFileNames, setUploadedFileNames] = useState<any>();
+
+  var productList: any = [];
+
+  const selectFile = (e: React.ChangeEvent<any>) => {
+    setFile(e.target.files[0]);
+  };
+
+  const uploadFile = async () => {
+    setUploadingStatus("Uploading the file to AWS S3");
+
+    let { data } = await axios.post("/api/s3/uploadFile", {
+      name: file.name,
+      type: file.type,
+    });
+
+    console.log(data);
+
+    const url = data.url;
+    let { data: newData } = await axios.put(url, file, {
+      headers: {
+        "Content-type": file.type,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    setUploadedFile(BUCKET_URL + file.name);
+    setFile(null);
+
+  };
+
+  const readProducts = async () => {
+   console.log('dwadwadddd');
+    var result = await getData();
+    console.log('dadwda  ' + JSON.stringify(result));
+    setUploadedFileNames(result['contacts']);
+    console.log("eswdwwd   " + result['contacts']);
+    result['contacts'].map((value: any) =>{
+      console.log('addd1 ' + value['name']);
+      productList.push(<li>{value['name']}</li>);
+    });
+    /*result.map((value: String) =>{
+      console.log('adwad11' + value);
+    });*/
+  };
+
+  //const data = await getData()
+
+  readProducts();
+
+  return (
+    <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">
+      <main>
+        <p>Please select a file to upload</p>
+        <input type="file" onChange={(e) => selectFile(e)} />
+        {file && (
+          <>
+            <p>Selected file: {file.name}</p>
+            <button
+              onClick={uploadFile}
+              className=" bg-purple-500 text-white p-2 rounded-sm shadow-md hover:bg-purple-700 transition-all"
+            >
+              Upload a File!
+            </button>
+          </>
+        )}
+        {uploadingStatus && <p>{uploadingStatus}</p>}
+        {uploadedFile && <img src={uploadedFile} />}
+        <p>estos son los productsos</p>
+        <ul>{productList}</ul>
+      </main>
+    </div>
+  );
+}
+
+/*'use client';
+import { useState } from "react";
+import axios from "axios";
+
+const BUCKET_URL = "https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/";
+
+export default function Home() {
+  const [file, setFile] = useState<any>();
+  const [uploadingStatus, setUploadingStatus] = useState<any>();
+  const [uploadedFile, setUploadedFile] = useState<any>();
+
+  const selectFile = (e: React.ChangeEvent<any>) => {
+    setFile(e.target.files[0]);
+  };
+
+  const uploadFile = async () => {
+    setUploadingStatus("Uploading the file to AWS S3");
+
+    let { data } = await axios.post("/api/s3/uploadFile", {
+      name: file.name,
+      type: file.type,
+    });
+
+    console.log(data);
+
+    const url = data.url;
+    let { data: newData } = await axios.put(url, file, {
+      headers: {
+        "Content-type": file.type,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    setUploadedFile(BUCKET_URL + file.name);
+    setFile(null);
+  };
+
+  return (
+    <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">
+      <main>
+        <p>Please select a file to upload</p>
+        <input type="file" onChange={(e) => selectFile(e)} />
+        {file && (
+          <>
+            <p>Selected file: {file.name}</p>
+            <button
+              onClick={uploadFile}
+              className=" bg-purple-500 text-white p-2 rounded-sm shadow-md hover:bg-purple-700 transition-all"
+            >
+              Upload a File!
+            </button>
+          </>
+        )}
+        {uploadingStatus && <p>{uploadingStatus}</p>}
+        {uploadedFile && <img src={uploadedFile} />}
+      </main>
+    </div>
+  );
+}*/
+/*import { useState } from "react";
+
+import { NextApiRequest, NextApiResponse } from "next";
+
+import { S3 } from "aws-sdk";
+
+const s3 = new S3({
+  region: 'sa-east-1',
+  accessKeyId: process.env.ACCESS_KEY,
+  secretAccessKey: process.env.SECRET_KEY,
+  signatureVersion: 'v4',
+});
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '8mb'
+    }
+  }
+}
+
+export default function Page() {
+
+  const [file, setFile] = useState<any>();
+
+  const selectFile = (e: React.ChangeEvent<any>) => {
+    setFile(e.target.files[0]);
+  };
+ 
+  return (
+    <div>
+      <main>
+        <p>Please select an anous</p>
+        <input type='file' onChange={(e) => selectFile(e)} />
+      </main>
+    </div>
+  );
+  
+}*/
+
+/*async function getData() {
   const res = await fetch('https://6nnofqmbzl.execute-api.sa-east-1.amazonaws.com/futuretest', {
     method: 'POST',
     cache: 'no-store'
@@ -29,7 +231,7 @@ export default async function Page() {
           </p>
   </main>
   
-}
+}*/
 
 /*export default function Home() {
 
