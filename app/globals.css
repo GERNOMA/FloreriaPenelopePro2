@@ -1,4 +1,4 @@
-@tailwind base;
+/*@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -14,26 +14,39 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+}*/
 
 body {
-  color: rgb(var(--foreground-rgb));
+  /*color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb));*/
+  color: black;
+  background-color: white;
+}
+
+.noTextStyle{
+  text-decoration: none;
+  color: black;
+}
+
+.italic{
+  font-style: italic;
+}
+
+.grey{
+  color: grey;
 }
 
 .bigText{
   font-size: 25px;
 }
 
-.squareImage{
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
+.mediumText{
+  font-size: 20px;
 }
 
 .center{
@@ -52,6 +65,10 @@ body {
   margin-bottom: 20px;
 }
 
+.marginAll{
+  margin: 10px;
+}
+
 .textInput{
   padding: 10px;
   color: black;
@@ -63,4 +80,22 @@ body {
   padding: 10px;
   display: block;
   background-color: green;
+}
+
+.product{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  width: 400px;
+  display: inline-block;
+  background-color: white;
+  overflow: hidden;
+  background-color: #E8E8E8;
+}
+
+.product img{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }

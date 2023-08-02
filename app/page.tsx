@@ -60,15 +60,12 @@ export default function Home() {
   };
 
   const readProducts = async () => {
-   console.log('dwadwadddd');
     var result = await getData();
-    console.log('dadwda  ' + JSON.stringify(result));
     setUploadedFileNames(result['contacts']);
-    console.log("eswdwwd   " + result['contacts']);
-    result['contacts'].map((value: any) =>{
+    /*result['contacts'].map((value: any) =>{
       console.log('addd1 ' + value['name']);
       productList.push(<li>{value['name']}</li>);
-    });
+    });*/
     /*result.map((value: String) =>{
       console.log('adwad11' + value);
     });*/
@@ -76,7 +73,7 @@ export default function Home() {
 
   //const data = await getData()
 
-  readProducts();
+  //readProducts();
 
   return (
     <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">

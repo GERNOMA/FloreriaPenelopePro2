@@ -37,7 +37,7 @@ export default function CreateProduct(){
 
     const uploadFile = async () => {
 
-        let { data } = await axios.post("../api/s3/uploadFile", {
+        let { data } = await axios.post("/api/s3/uploadFile", {
             name: file.name,
             type: file.type,
         });
@@ -72,7 +72,7 @@ export default function CreateProduct(){
             <button
                 onClick={createProduct}
                 className="buttonInput">
-                Upload a File!
+                Crear
             </button>
             {uploadingStatus && <p>{uploadingStatus}</p>}
         </div>

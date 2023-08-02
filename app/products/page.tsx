@@ -52,11 +52,11 @@ function Product({ product } : any){
 
     return (
         <Link href={`/products/${id}`}>
-            <div>
-                <p>{name}</p>
-                <p>{description}</p>
-                <p>{price}</p>
+            <div className="product">
                 <img src={`${BUCKET_URL}${imageName}`} className="squareImage"/>
+                <p className="italic bigText centerText">{name}</p>
+                <p className="noTextStyle grey marginAll">{description}</p>
+                <p className="noTextStyle mediumText marginAll">${price}</p>
             </div>
         </Link>
     );
