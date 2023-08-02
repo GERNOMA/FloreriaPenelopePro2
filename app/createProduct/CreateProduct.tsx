@@ -74,7 +74,7 @@ export default function CreateProduct(){
                 className="buttonInput">
                 Crear
             </button>
-            {uploadingStatus && <p>{uploadingStatus}</p>}
+            {uploadingStatus && <p className="centerText">{uploadingStatus}</p>}
         </div>
     );
 }

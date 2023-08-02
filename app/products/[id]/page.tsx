@@ -54,14 +54,14 @@ function Product({ product } : any){
     const {id, name, description, price, imageName} = product || {};
 
     return (
-        <Link href={`/products/${id}`}>
+        <div className="productOnly">
+            <img src={`${BUCKET_URL}${imageName}`} className="squareImage borderRadius"/>
             <div>
-                <p>{name}</p>
-                <p>{description}</p>
-                <p>{price}</p>
-                <img src={`${BUCKET_URL}${imageName}`} className="squareImage"/>
+                <p className="noTextStyle italic bigText marginAll">{name}</p>
+                <p className="noTextStyle grey marginAll">{description}</p>
+                <p className="noTextStyle mediumText marginAll">${price}</p>
             </div>
-        </Link>
+        </div>
     );
 
 }

@@ -1,7 +1,7 @@
 export default async function loading(){
     return(
         <div>
-            <p>Cargando...</p>
+            <p className="centerText marginAll">Cargando...</p>
         </div>
     );
 }

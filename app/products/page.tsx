@@ -53,8 +53,8 @@ function Product({ product } : any){
     return (
         <Link href={`/products/${id}`}>
             <div className="product">
-                <img src={`${BUCKET_URL}${imageName}`} className="squareImage"/>
-                <p className="italic bigText centerText">{name}</p>
+                <img src={`${BUCKET_URL}${imageName}`} className="squareImage borderRadius"/>
+                <p className="noTextStyle italic bigText centerText">{name}</p>
                 <p className="noTextStyle grey marginAll">{description}</p>
                 <p className="noTextStyle mediumText marginAll">${price}</p>
             </div>
