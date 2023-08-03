@@ -2,6 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Inter } from "next/font/google";
+import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -92,7 +93,7 @@ export default function Home() {
           </>
         )}
         {uploadingStatus && <p>{uploadingStatus}</p>}
-        {uploadedFile && <img src={uploadedFile} />}
+        {uploadedFile && <Image src={uploadedFile} alt='aa'/>}
         <p>estos son los productsos</p>
         <ul>{productList}</ul>
       </main>

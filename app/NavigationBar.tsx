@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import Image from 'next/image';
  
 
 
@@ -59,7 +60,7 @@ export default function NavigationBar({ categories }: any){
             </div>
             <div className='sm:hidden flex p-3 flex-row flex-wrap justify-between'>
                 <div className='no-underline'>
-                    <img className='w-10 aspect-square object-cover align-center' src='https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/Logo.jpeg' />
+                    <Image className='w-10 aspect-square object-cover align-center' src='https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/Logo.jpeg' alt='Icono'/>
                 </div>
 
                 <div className='no-underline p-2' onClick={() => setMovileNav(!movileNav)}>

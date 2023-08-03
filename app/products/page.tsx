@@ -4,6 +4,7 @@ import axios from "axios";
 import { Inter } from "next/font/google";
 import { get } from "http";
 import Link from "next/link";
+import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -50,7 +51,7 @@ function Product({ product } : any){
     return (
         <div className='m-5 min-w-[300px] md:w-[25%] md:m-2 md:inline-block md:align-top'>
             <Link href={`/products/${id}`}>
-                <img src={`${BUCKET_URL}${imageName}`} className='object-cover rounded-md w-max aspect-square'/>
+                <Image src={`${BUCKET_URL}${imageName}`} className='object-cover rounded-md w-max aspect-square' alt='Producto'/>
                 <p className='no-underline text-black italic text-[17px] mt-3'>{name}</p>
                 <p className='no-underline text-gray-500 text-[17px]'>{description}</p>
                 <p className='no-underline text-black text-[20px] mt-3'>${price}</p>

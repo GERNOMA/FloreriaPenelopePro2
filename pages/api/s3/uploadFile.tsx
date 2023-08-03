@@ -7,7 +7,7 @@ import { CognitoIdentityClient, CreateIdentityPoolCommand } from "@aws-sdk/clien
 const s3Client = new S3Client({});
 
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const uploadFile = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
@@ -29,13 +29,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export const config = {
+export default uploadFile;
+
+/*export const config = {
   api: {
     bodyParser: {
       sizeLimit: "8mb", // Set desired value here
     },
   },
-};
+};*/
 
 /*import { NextApiRequest, NextApiResponse } from "next";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
