@@ -103,7 +103,7 @@ export default function CreateProduct({ categories }: any){
             <select className="p-2 m-2" onChange={(e: any) => setProductCategory(e.target.value)}>
                 {
                     categories.map((product: any) => {
-                        return <option value={product.id}>{product.name}</option>
+                        return <option key={product.id} value={product.id}>{product.name}</option>
                     })
                 }
             </select>

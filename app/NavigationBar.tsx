@@ -32,7 +32,7 @@ export default function NavigationBar({ categories }: any){
                     </Link>
                     {
                         categories.map((product: any) => {
-                            return (<Link href='/createProduct' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
+                            return (<Link  key={product.id} href='/createProduct' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
                                 {product.name}
                             </Link>);
                         })
@@ -51,7 +51,7 @@ export default function NavigationBar({ categories }: any){
                 </Link>
                 {
                 categories.map((product: any) => {
-                    return (<Link href='/createProduct' className='no-underline p-2'>
+                    return (<Link key={product.id} href='/createProduct' className='no-underline p-2'>
                         {product.name}
                     </Link>);
                 })
