@@ -37,7 +37,7 @@ export default async function ProductRender({ params }: any) {
     await getProducts(params.id);
 
     return (
-    <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">
+    <div>
         <main>
         {
             productList.map((product: any) => {
@@ -54,12 +54,12 @@ function Product({ product } : any){
     const {id, name, description, price, imageName} = product || {};
 
     return (
-        <div className="productOnly">
-            <img src={`${BUCKET_URL}${imageName}`} className="squareImage borderRadius"/>
-            <div>
-                <p className="noTextStyle italic bigText marginAll">{name}</p>
-                <p className="noTextStyle grey marginAll">{description}</p>
-                <p className="noTextStyle mediumText marginAll">${price}</p>
+        <div className="m-5 min-w-[300px] md:w-[25%] md:m-2 md:inline-block md:align-top">
+            <img src={`${BUCKET_URL}${imageName}`} className="rounded-lg md:w-2/5 md:inline-block"/>
+            <div className="md:inline-block md:align-top md:ml-3">
+                <p className="no-underline text-black italic text-[17px] mt-3">{name}</p>
+                <p className="no-underline text-gray-500 text-[17px]">{description}</p>
+                <p className="no-underline text-black text-[20px] mt-3'">${price}</p>
             </div>
         </div>
     );

@@ -9,11 +9,32 @@ var file: any = null;
 
 var productList: any = [];
 
+var categories: any;
+
+async function getCategories(){
+
+    const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getCategories', {
+        method: 'POST',
+        cache: 'no-store'
+    })
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data');
+    }
+
+    var result = await res.json();
+
+    categories = result.contacts;
+}
+
 export default async function Home() {
+
+    await getCategories();
+
     return (
-    <div className="centerDiv">
-        <p className="bigText centerText margin">Sube tu prducto amorfa</p>
-        <CreateProduct/>
+    <div className=''>
+        <p className='text-3xl text-center m-2'>Sube tu prducto amorfa</p>
+        <CreateProduct categories={categories}/>
     </div>
     );
 }

@@ -26,7 +26,6 @@ async function getProducts() {
   var result = await res.json();
 
   productList = result.contacts;
-  console.log(result);
 }
 
 export default async function Home() {
@@ -34,14 +33,12 @@ export default async function Home() {
     await getProducts();
 
     return (
-    <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">
-        <main>
+    <div className="md:m-auto md:max-w-[1500px] md:flex md:flex-row md:flex-wrap md:justify-center">
         {
             productList.map((product: any) => {
                 return <Product key={product.id} product={product}/>
             })
         }
-        </main>
     </div>
     );
 }
@@ -51,14 +48,14 @@ function Product({ product } : any){
     const {id, name, description, price, imageName} = product || {};
 
     return (
-        <Link href={`/products/${id}`}>
-            <div className="product">
-                <img src={`${BUCKET_URL}${imageName}`} className="squareImage borderRadius"/>
-                <p className="noTextStyle italic bigText centerText">{name}</p>
-                <p className="noTextStyle grey marginAll">{description}</p>
-                <p className="noTextStyle mediumText marginAll">${price}</p>
-            </div>
-        </Link>
+        <div className='m-5 min-w-[300px] md:w-[25%] md:m-2 md:inline-block md:align-top'>
+            <Link href={`/products/${id}`}>
+                <img src={`${BUCKET_URL}${imageName}`} className='object-cover rounded-md w-max aspect-square'/>
+                <p className='no-underline text-black italic text-[17px] mt-3'>{name}</p>
+                <p className='no-underline text-gray-500 text-[17px]'>{description}</p>
+                <p className='no-underline text-black text-[20px] mt-3'>${price}</p>
+            </Link>
+        </div>
     );
 
 }
