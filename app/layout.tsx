@@ -38,7 +38,7 @@ export default async function RootLayout({
   await getCategories();
 
   return (
-    <html>
+    <html lang='es'>
       <body className={inter.className}>
         <main>
           <NavigationBar categories={categories}/>
