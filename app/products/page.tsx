@@ -32,18 +32,26 @@ async function getProducts() {
   productList = result.contacts;
 }
 
+var blurImagesCount = 0;
+
 export default async function Home() {
 
     await getProducts();
 
+    blurImagesCount = 0;
+
+    const getBlurImage = async(product: any) => {
+        console.log(product.blurImageName);
+        const blurDataURL = await getBase64(`${BUCKET_URL}${product.blurImageName}`);
+        productBlurList.push(blurDataURL);
+        blurImagesCount++;
+    }
+
     const getBlurImages = async() => {
         console.time("for of");
         const data = []
-        for (const product of productList) {
-            console.log(product.blurImageName);
-            const blurDataURL = await getBase64(`${BUCKET_URL}${product.blurImageName}`);
-            productBlurList.push(blurDataURL);
-        }
+        const promises = productList.map((product: any) => getBlurImage(product));
+        await Promise.all(promises);
         console.timeEnd("for of");
     }
 
