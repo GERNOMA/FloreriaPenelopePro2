@@ -54,10 +54,7 @@ function Product({ product } : any){
                 <Image src={`${BUCKET_URL}${imageName}`} priority={true}
                 width={300}
                 height={300}
-                style={{
-                    objectFit: 'cover',
-                    aspectRatio: '1/1'
-                }}
+                objectFit='contain'
                 //sizes='100vw'
                 className='object-cover rounded-md w-[100vw] md:h-auto aspect-square' alt='Producto'/>
                 <p className='no-underline text-black italic text-[17px] mt-3'>{name}</p>
