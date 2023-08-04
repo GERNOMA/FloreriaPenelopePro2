@@ -42,6 +42,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <main>
           <NavigationBar categories={categories}/>
+          <div className='w-max h-20'></div>
           {children}
         </main>
       </body>

@@ -48,12 +48,17 @@ function Product({ product } : any){
 
     const {id, name, description, price, imageName} = product || {};
 
+    const timeStamp = new Date().getTime()
+
     return (
         <div className='w-100vw m-5 md:min-w-[300px] md:w-[25%] md:m-2 md:inline-block md:align-top'>
             <Link href={`/products/${id}`}>
-                <Image src={`${BUCKET_URL}${imageName}`} priority={true}
+                <Image src={`${BUCKET_URL}${imageName}?${timeStamp}`} priority={true}
                 width={300}
                 height={300}
+                quality={100}
+                blurDataURL="/images/bloorImage.jpg"
+                placeholder="blur"
                 /*
                   style={{
                     objectFit: 'contain',
