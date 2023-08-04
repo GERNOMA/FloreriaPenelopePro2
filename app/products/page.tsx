@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import { get } from "http";
 import Link from "next/link";
 import Image from 'next/image';
-import getBase64 from "../utilities/getBase64";
+import getBase64 from "../utilities/toBase64";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -40,6 +40,7 @@ export default async function Home() {
         console.time("for of");
         const data = []
         for (const product of productList) {
+            console.log(product.blurImageName);
             const blurDataURL = await getBase64(`${BUCKET_URL}${product.blurImageName}`);
             productBlurList.push(blurDataURL);
         }
@@ -71,7 +72,7 @@ function Product({ product, blurUrl } : any) {
                 <Image src={`${BUCKET_URL}${imageName}?${timeStamp}`} priority={true}
                 width={300}
                 height={300}
-                quality={100}
+                quality={80}
                 blurDataURL={blurUrl}
                 placeholder="blur"
                 style={{

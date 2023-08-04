@@ -4,6 +4,7 @@ import axios from "axios";
 import { Inter } from "next/font/google";
 import { get } from "http";
 import { useRouter } from 'next/navigation';
+import ImageCompressor from 'browser-image-compression';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,7 +13,8 @@ export default function CreateProduct({ categories }: any){
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
-    const [file, setFile] = useState<any>();
+    const [image, setImage] = useState<any>();
+    const [blurImage, setBlurImage] = useState<any>();
     const [productCategory, setProductCategory] = useState<any>();
     const [uploadingStatus, setUploadingStatus] = useState('');
     const [titleCategoty, setTitleCategory] = useState('');
@@ -32,7 +34,8 @@ export default function CreateProduct({ categories }: any){
                 name: title,
                 description: description,
                 price: price,
-                imageName: file.name,
+                imageName: image.name,
+                blurImageName: blurImage.name,
                 category: productCategory
             }),
         })
@@ -43,7 +46,7 @@ export default function CreateProduct({ categories }: any){
 
     };
 
-    const uploadFile = async () => {
+    const uploadFile = async (file: any) => {
 
         let { data } = await axios.post("/api/s3/uploadFile", {
             name: file.name,
@@ -64,7 +67,10 @@ export default function CreateProduct({ categories }: any){
     const createProduct = async () => {
         setUploadingStatus('Subiendo...');
 
-        await uploadFile();
+        blurImage.name = `blur-${image.name}`;
+
+        await uploadFile(image);
+        await uploadFile(blurImage);
 
         await uploadProduct();
 
@@ -94,12 +100,33 @@ export default function CreateProduct({ categories }: any){
         router.refresh();
     }
 
+    const compressFile = async (file: any) => {
+
+        setImage(file);
+
+        const imageFile = file;
+
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 15,
+            useWebWorker: true
+        };
+
+        try {
+            const compressedFile = await ImageCompressor(imageFile, options);
+            setBlurImage(compressedFile);
+        // You can now upload the compressedFile to your server
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className='flex flex-col items-center'>
             <input type="text" placeholder="Título" onChange={(e: any) => setTitle(e.target.value)} className='p-2 m-2 block text-black' />
             <input type="text" placeholder="Descripción" onChange={(e: any) => setDescription(e.target.value)} className="p-2 m-2 block text-black"/>
             <input type="number" placeholder="Precio" onChange={(e: any) => setPrice(e.target.value)} className="p-2 m-2 block text-black"/>
-            <input type="file" onChange={(e: any) => setFile(e.target.files[0])} className="p-2 m-2 block text-black"/>
+            <input type="file" onChange={(e: any) => compressFile(e.target.files[0])} className="p-2 m-2 block text-black"/>
             <select className="p-2 m-2" onChange={(e: any) => setProductCategory(e.target.value)}>
                 {
                     categories.map((product: any) => {
