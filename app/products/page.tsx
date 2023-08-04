@@ -34,7 +34,7 @@ export default async function Home() {
     await getProducts();
 
     return (
-    <div className="md:m-auto md:max-w-[1500px] md:flex md:flex-row md:flex-wrap md:justify-center">
+    <div className="md:m-auto md:max-w-[1500px] flex flex-col md:flex-row flex-wrap justify-center">
         {
             productList.map((product: any) => {
                 return <Product key={product.id} product={product}/>
@@ -49,14 +49,14 @@ function Product({ product } : any){
     const {id, name, description, price, imageName} = product || {};
 
     return (
-        <div className='m-5 min-w-[300px] md:w-[25%] md:m-2 md:inline-block md:align-top'>
+        <div className='w-100vw m-5 md:min-w-[300px] md:w-[25%] md:m-2 md:inline-block md:align-top'>
             <Link href={`/products/${id}`}>
-                <Image src={`${BUCKET_URL}${imageName}`} priority
+                <Image src={`${BUCKET_URL}${imageName}`} priority={true}
                 objectFit="cover"
                 width='0'
                 height='0'
-                sizes="100vw"
-                className='object-cover rounded-md w-max aspect-square' alt='Producto'/>
+                sizes='100vw'
+                className='object-cover rounded-md w-[100vw] h-[100vw] md:h-auto aspect-square' alt='Producto'/>
                 <p className='no-underline text-black italic text-[17px] mt-3'>{name}</p>
                 <p className='no-underline text-gray-500 text-[17px]'>{description}</p>
                 <p className='no-underline text-black text-[20px] mt-3'>${price}</p>
