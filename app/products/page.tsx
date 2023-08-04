@@ -59,7 +59,7 @@ function Product({ product } : any){
                     aspectRatio: '1/1'
                 }}
                 //sizes='100vw'
-                /*className='object-cover rounded-md w-[100vw] h-[100vw] md:h-auto aspect-square'*/ alt='Producto'/>
+                className='object-cover rounded-md w-[100vw] md:h-auto aspect-square' alt='Producto'/>
                 <p className='no-underline text-black italic text-[17px] mt-3'>{name}</p>
                 <p className='no-underline text-gray-500 text-[17px]'>{description}</p>
                 <p className='no-underline text-black text-[20px] mt-3'>${price}</p>
