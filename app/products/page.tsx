@@ -52,7 +52,6 @@ function Product({ product } : any){
         <div className='w-100vw m-5 md:min-w-[300px] md:w-[25%] md:m-2 md:inline-block md:align-top'>
             <Link href={`/products/${id}`}>
                 <Image src={`${BUCKET_URL}${imageName}`} priority={true}
-                objectFit="cover"
                 width='0'
                 height='0'
                 sizes='100vw'
