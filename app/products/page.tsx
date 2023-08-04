@@ -51,11 +51,15 @@ function Product({ product } : any){
     return (
         <div className='w-100vw m-5 md:min-w-[300px] md:w-[25%] md:m-2 md:inline-block md:align-top'>
             <Link href={`/products/${id}`}>
-                <img src={`${BUCKET_URL}${imageName}`} /*priority={true}
-                width='0'
-                height='0'
-                sizes='100vw'*/
-                className='object-cover rounded-md w-[100vw] h-[100vw] md:h-auto aspect-square' alt='Producto'/>
+                <Image src={`${BUCKET_URL}${imageName}`} priority={true}
+                width={300}
+                height={300}
+                style={{
+                    objectFit: 'cover',
+                    aspectRatio: '1/1'
+                }}
+                //sizes='100vw'
+                /*className='object-cover rounded-md w-[100vw] h-[100vw] md:h-auto aspect-square'*/ alt='Producto'/>
                 <p className='no-underline text-black italic text-[17px] mt-3'>{name}</p>
                 <p className='no-underline text-gray-500 text-[17px]'>{description}</p>
                 <p className='no-underline text-black text-[20px] mt-3'>${price}</p>
