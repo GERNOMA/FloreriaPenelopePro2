@@ -102,18 +102,32 @@ export default function CreateProduct({ categories }: any){
 
     const compressFile = async (file: any) => {
 
-        setImage(file);
-
-        const imageFile = file;
-
-        const options = {
+        var options = {
             maxSizeMB: 1,
-            maxWidthOrHeight: 15,
-            useWebWorker: true
+            maxWidthOrHeight: 500,
+            useWebWorker: true,
+            fileType: 'image/webp',
+            initialQuality: 0.8,
         };
 
         try {
-            const compressedFile = await ImageCompressor(imageFile, options);
+            const compressedFile = await ImageCompressor(file, options);
+            setImage(compressedFile);
+        // You can now upload the compressedFile to your server
+        } catch (error) {
+            console.log(error);
+        }
+
+        options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 15,
+            useWebWorker: true,
+            fileType: 'image/webp',
+            initialQuality: 0.2,
+        };
+
+        try {
+            const compressedFile = await ImageCompressor(file, options);
             setBlurImage(compressedFile);
         // You can now upload the compressedFile to your server
         } catch (error) {
