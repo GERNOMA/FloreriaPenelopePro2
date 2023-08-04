@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { get } from "http";
 import Link from "next/link";
 import Image from 'next/image';
+import getBase64 from "../../utilities/getBase64";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -37,12 +38,14 @@ export default async function ProductRender({ params }: any) {
 
     await getProducts(params.id);
 
+    const blurImageUrl = await getBase64(`${BUCKET_URL}cat.webp`);
+
     return (
     <div>
         <main>
         {
             productList.map((product: any) => {
-                return <Product key={product.id} product={product}/>
+                return <Product key={product.id} product={product} blurUrl={blurImageUrl}/>
             })
         }
         </main>
@@ -50,14 +53,24 @@ export default async function ProductRender({ params }: any) {
     );
 }
 
-function Product({ product } : any){
+function Product({ product, blurUrl } : any){
 
     const {id, name, description, price, imageName} = product || {};
 
     return (
-        <div className="m-5 min-w-[300px] md:w-[25%] md:m-2 md:inline-block md:align-top">
-            <Image src={`${BUCKET_URL}${imageName}`} className="rounded-lg md:w-2/5 md:inline-block" alt='Producto'/>
-            <div className="md:inline-block md:align-top md:ml-3">
+        <div className="p-5 sms:m-auto sms:align-top sms:max-w-[700px]">
+            <Image src={`${BUCKET_URL}${imageName}`}
+                width={500}
+                height={500}
+                quality={75}
+                blurDataURL={blurUrl}
+                placeholder="blur"
+                style={{
+                    objectFit: 'cover',
+                    aspectRatio: '1/1'
+                }}
+                className="object-cover rounded-md w-[100vw] sms:w-[60%] sms:h-auto aspect-square sms:inline-block" alt='Producto'/>
+            <div className="sms:inline-block sms:align-top sms:ml-3">
                 <p className="no-underline text-black italic text-[17px] mt-3">{name}</p>
                 <p className="no-underline text-gray-500 text-[17px]">{description}</p>
                 <p className="no-underline text-black text-[20px] mt-3'">${price}</p>

@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import { get } from "http";
 import Link from "next/link";
 import Image from 'next/image';
-import getBase64 from "../../../utilities/toBase64";
+import getBase64 from "../../../utilities/getBase64";
 
 const inter = Inter({ subsets: ['latin'] });
 
