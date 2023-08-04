@@ -59,13 +59,10 @@ function Product({ product } : any){
                 quality={100}
                 blurDataURL="/images/bloorImage.jpg"
                 placeholder="blur"
-                /*
-                  style={{
-                    objectFit: 'contain',
+                style={{
+                    objectFit: 'cover',
                     aspectRatio: '1/1'
                 }}
-                */
-                objectFit='cover'
                 //sizes='100vw'
                 className='object-cover rounded-md w-[100vw] md:h-auto aspect-square' alt='Producto'/>
                 <p className='no-underline text-black italic text-[17px] mt-3'>{name}</p>
