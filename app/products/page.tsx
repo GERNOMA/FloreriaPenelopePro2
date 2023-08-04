@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { get } from "http";
 import Link from "next/link";
 import Image from 'next/image';
+import getBase64 from "../utilities/getBase64";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,6 +14,8 @@ const BUCKET_URL = "https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/";
 var file: any = null;
 
 var productList: any = [];
+
+var productBlurList: any = [];
 
 async function getProducts() {
   const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getProducts', {
@@ -33,18 +36,30 @@ export default async function Home() {
 
     await getProducts();
 
+    const getBlurImages = async() => {
+        console.time("for of");
+        const data = []
+        for (const product of productList) {
+            const blurDataURL = await getBase64(`${BUCKET_URL}${product.blurImageName}`);
+            productBlurList.push(blurDataURL);
+        }
+        console.timeEnd("for of");
+    }
+
+    await getBlurImages();
+
     return (
     <div className="md:m-auto md:max-w-[1500px] flex flex-col md:flex-row flex-wrap justify-center">
         {
-            productList.map((product: any) => {
-                return <Product key={product.id} product={product}/>
+            productList.map((product: any, index: any) => {
+                return <Product key={product.id} product={product} blurUrl={productBlurList[index]}/>
             })
         }
     </div>
     );
 }
 
-function Product({ product } : any){
+function Product({ product, blurUrl } : any) {
 
     const {id, name, description, price, imageName} = product || {};
 
@@ -57,7 +72,7 @@ function Product({ product } : any){
                 width={300}
                 height={300}
                 quality={100}
-                blurDataURL="/images/bloorImage.jpg"
+                blurDataURL={blurUrl}
                 placeholder="blur"
                 style={{
                     objectFit: 'cover',
