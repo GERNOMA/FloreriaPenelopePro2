@@ -147,6 +147,7 @@ export default function CreateProduct({ categories }: any){
                         return <option key={product.id} value={product.id}>{product.name}</option>
                     })
                 }
+                <option key='-1' value='caca' selected={true}>elejí</option>
             </select>
             <button
                 onClick={createProduct}

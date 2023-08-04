@@ -33,7 +33,7 @@ export default function NavigationBar({ categories }: any){
                     </Link>
                     {
                         categories.map((product: any) => {
-                            return (<Link  key={product.id} href='/createProduct' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
+                            return (<Link  key={product.id} href={`/products/categories/${product.id}`} className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
                                 {product.name}
                             </Link>);
                         })
