@@ -98,7 +98,7 @@ export default function Home() {
           <div className='w-[70vw] sms:w-[50vw] h-[15vh] absolute top-[35%] left-[50%] translate-x-[-50%] translate-y-[-50%] tr bg-gray-300 shadow-xl'>
             <p className='text-4xl sms:text-5xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>Contáctanos</p>
           </div>
-          <Image src={'/mainPageSplash.jpg'} alt='Imagen principal' priority={true} width={500} height={500} quality={80}
+          <Image src={'https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/mainPageSplash.jpg'} alt='Imagen principal' priority={true} width={500} height={500} quality={80}
             className='w-[100vw] h-[50vh] mt-[-50px] object-cover'/>
         </div>
       </main>
