@@ -82,21 +82,24 @@ export default function Home() {
     <div className="">
       <main>
         <div className='relative'>
-          <div className='w-[50vw] sms:pt-0 sms:w-[80vw] h-[430px] sms:h-[300px] absolute top-[60%] sms:top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] tr bg-white'>
-            <div className='flex flex-col sms:flex-row flex-wrap justify-end sms:justify-around items-center h-[100%]'>
-              <Link className='shadow-md rounded-full p-3 bg-[#25D366]' href='https://wa.me/+59898372787'>
-                <AiOutlineWhatsApp size={100} color={'white'}/>
+          <div className='w-[80vw] sms:pt-0 sms:w-[40vw] h-[55%] sms:h-[40%] absolute top-[60%] sms:top-[60%] left-[50%] translate-x-[-50%] translate-y-[-50%] tr bg-white'>
+            <div className='flex flex-row flex-wrap justify-around sms:justify-around items-end h-[100%]'>
+              <Link className='mb-[2vh] sms:mb-[1vh] shadow-md rounded-full p-3 bg-[#25D366] w-[27%] sms:w-auto sms:h-[60%] aspect-square flex items-center justify-center' href='https://wa.me/+59898372787'>
+                <AiOutlineWhatsApp size={'100%'} color={'white'}/>
               </Link>
-              <Link className='my-10 shadow-md rounded-full p-3 bg-[#25D366]' href='Tel:5989837287'>
+              <Link className='mb-[2vh] sms:mb-[1vh] shadow-md rounded-full p-3 bg-[#25D366] w-[27%] sms:w-auto sms:h-[60%] aspect-square flex items-center justify-center' href='https://wa.me/+59898372787'>
+                <AiFillPhone size={'100%'} color={'white'}/>
+              </Link>
+              {/*<Link className='my-10 shadow-md rounded-full p-3 bg-[#25D366]' href='Tel:5989837287'>
                 <AiFillPhone size={100} color={'white'}/>
-              </Link>
+              </Link>*/}
             </div>
           </div>
-          <div className='w-[70vw] sms:w-[50vw] h-[100px] absolute top-[25%] left-[50%] translate-x-[-50%] translate-y-[-50%] tr bg-gray-300 shadow-xl'>
+          <div className='w-[70vw] sms:w-[50vw] h-[15vh] absolute top-[35%] left-[50%] translate-x-[-50%] translate-y-[-50%] tr bg-gray-300 shadow-xl'>
             <p className='text-4xl sms:text-5xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>Contáctanos</p>
           </div>
           <Image src={'/mainPageSplash.jpg'} alt='Imagen principal' width={1920} height={1080}
-            className='h-[60vh] mt-[-50px] object-cover'/>
+            className='h-[50vh] mt-[-50px] object-cover'/>
         </div>
       </main>
     </div>
