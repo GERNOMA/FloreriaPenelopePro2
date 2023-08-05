@@ -76,7 +76,7 @@ function Product({ product, blurUrl } : any) {
     return (
         <div className='w-100vw m-5 md:min-w-[300px] md:w-[25%] md:m-2 md:inline-block md:align-top'>
             <Link href={`/products/${id}`}>
-                <Image src={`${BUCKET_URL}${imageName}?${timeStamp}`} priority={true}
+                <Image src={`${BUCKET_URL}${imageName}`} priority={true}
                 width={500}
                 height={500}
                 quality={75}

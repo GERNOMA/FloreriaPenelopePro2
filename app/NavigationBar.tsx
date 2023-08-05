@@ -25,9 +25,9 @@ export default function NavigationBar({ categories }: any){
                     <Link href='/' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
                         Home
                     </Link>
-                    <Link href='/products' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
+                    {/*<Link href='/products' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
                         Productos
-                    </Link>
+                    </Link>*/}
                     <Link href='/createProduct' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
                         Agregar
                     </Link>
@@ -44,9 +44,9 @@ export default function NavigationBar({ categories }: any){
                 <Link href='/' className='no-underline p-2'>
                 Home
                 </Link>
-                <Link href='/products' className='no-underline p-2'>
+                {/*<Link href='/products' className='no-underline p-2'>
                 Productos
-                </Link>
+                </Link>*/}
                 <Link href='/createProduct' className='no-underline p-2'>
                 Agregar
                 </Link>

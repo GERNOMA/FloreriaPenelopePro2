@@ -3,6 +3,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Inter } from "next/font/google";
 import Image from 'next/image';
+import { AiOutlineWhatsApp, AiFillPhone } from 'react-icons/ai';
+import Link from "next/link";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -77,25 +79,25 @@ export default function Home() {
   //readProducts();
 
   return (
-    <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">
+    <div className="">
       <main>
-        <p>Please select a file to upload</p>
-        <input type="file" onChange={(e) => selectFile(e)} />
-        {file && (
-          <>
-            <p>Selected file: {file.name}</p>
-            <button
-              onClick={uploadFile}
-              className=" bg-purple-500 text-white p-2 rounded-sm shadow-md hover:bg-purple-700 transition-all"
-            >
-              Upload a File!
-            </button>
-          </>
-        )}
-        {uploadingStatus && <p>{uploadingStatus}</p>}
-        {uploadedFile && <Image src={uploadedFile} alt='aa'/>}
-        <p>estos son los productsos</p>
-        <ul>{productList}</ul>
+        <div className='relative z-10'>
+          <div className='w-[50vw] sms:pt-0 sms:w-[80vw] h-[430px] sms:h-[300px] absolute top-[60%] sms:top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] tr bg-white'>
+            <div className='flex flex-col sms:flex-row flex-wrap justify-end sms:justify-around items-center h-[100%]'>
+              <Link className='shadow-md rounded-full p-3 bg-[#25D366]' href='https://wa.me/+59898372787'>
+                <AiOutlineWhatsApp size={100} color={'white'}/>
+              </Link>
+              <Link className='my-10 shadow-md rounded-full p-3 bg-[#25D366]' href='Tel:5989837287'>
+                <AiFillPhone size={100} color={'white'}/>
+              </Link>
+            </div>
+          </div>
+          <div className='w-[70vw] sms:w-[50vw] h-[100px] absolute top-[25%] left-[50%] translate-x-[-50%] translate-y-[-50%] tr bg-gray-300 shadow-xl'>
+            <p className='text-4xl sms:text-5xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>Contáctanos</p>
+          </div>
+          <Image src={'/mainPageSplash.jpg'} alt='Imagen principal' width={1920} height={1080}
+            className='h-[60vh] mt-[-20px] object-cover'/>
+        </div>
       </main>
     </div>
   );
