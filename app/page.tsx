@@ -81,7 +81,7 @@ export default function Home() {
   return (
     <div className="">
       <main>
-        <div className='relative z-10'>
+        <div className='relative'>
           <div className='w-[50vw] sms:pt-0 sms:w-[80vw] h-[430px] sms:h-[300px] absolute top-[60%] sms:top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] tr bg-white'>
             <div className='flex flex-col sms:flex-row flex-wrap justify-end sms:justify-around items-center h-[100%]'>
               <Link className='shadow-md rounded-full p-3 bg-[#25D366]' href='https://wa.me/+59898372787'>
@@ -96,7 +96,7 @@ export default function Home() {
             <p className='text-4xl sms:text-5xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>Contáctanos</p>
           </div>
           <Image src={'/mainPageSplash.jpg'} alt='Imagen principal' width={1920} height={1080}
-            className='h-[60vh] mt-[-20px] object-cover'/>
+            className='h-[60vh] mt-[-50px] object-cover'/>
         </div>
       </main>
     </div>

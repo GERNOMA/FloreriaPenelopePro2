@@ -14,7 +14,7 @@ export default function NavigationBar({ categories }: any){
     const [movileNav, setMovileNav] = useState(false);
 
     return (
-        <nav className='bg-gray-300 fixed top-0 left-0 right-0'>
+        <nav className='bg-gray-300 fixed top-0 left-0 right-0 z-10'>
             <div className={movileNav
                     ? 'fixed left-0 top-0 w-[50%] h-screen bg-[#ecf0f3] p-10 ease-in duration-500'
                     : 'fixed left-[-100%] w-[50%] h-screen top-0 p-10 ease-in duration-500'}>
