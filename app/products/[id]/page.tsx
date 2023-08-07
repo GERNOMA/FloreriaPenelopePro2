@@ -74,7 +74,7 @@ function Product({ product, blurUrl } : any){
                 <p className="no-underline text-black italic text-[17px] mt-3">{name}</p>
                 <p className="no-underline text-gray-500 text-[17px]">{description}</p>
                 <p className="no-underline text-black text-[20px] mt-3">${price}</p>
-                <Link href={'/buy'}>
+                <Link href={'/comprar'}>
                     <button className="no-underline text-black text-[20px] mt-3 bg-green-500 rounded-3xl px-4 py-2">Comprar</button>
                 </Link>
             </div>
