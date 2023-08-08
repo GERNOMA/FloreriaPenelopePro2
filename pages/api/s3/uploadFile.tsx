@@ -4,7 +4,9 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
 import { CognitoIdentityClient, CreateIdentityPoolCommand } from "@aws-sdk/client-cognito-identity";
 
-const s3Client = new S3Client({});
+const s3Client = new S3Client({
+
+});
 
 
 const uploadFile = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,7 +18,7 @@ const uploadFile = async (req: NextApiRequest, res: NextApiResponse) => {
     let { name, type } = req.body;
 
     const command = new PutObjectCommand({
-      Bucket: process.env.BUCKET_NAME,
+      Bucket: /*process.env.BUCKET_NAME*/'floreria-web-bucket',
       Key: name,
     });
 
