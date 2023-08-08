@@ -1,5 +1,5 @@
 //'use client';
-import { useState } from "react";
+/*import { useState } from "react";
 import axios from "axios";
 import { Inter } from "next/font/google";
 import { get } from "http";
@@ -38,19 +38,19 @@ export default async function Home() {
 
     await getProducts();
 
-    /*const getBlurImage = async(product: any) => {
+    const getBlurImage = async(product: any) => {
         console.log(product.blurImageName);
         const blurDataURL = await getBase64(`${BUCKET_URL}${product.blurImageName}`);
         productBlurList.push(blurDataURL);
-    }*/
+    }
 
-    /*const getBlurImages = async() => {
+    const getBlurImages = async() => {
         console.time("for of");
         const data = []
         const promises = productList.map((product: any) => getBlurImage(product));
         await Promise.all(promises);
         console.timeEnd("for of");
-    }*/
+    }
 
     //await getBlurImages();
 
@@ -58,7 +58,7 @@ export default async function Home() {
 
     return (
     <div className="md:m-auto md:max-w-[1500px] flex flex-col md:flex-row flex-wrap justify-center">
-        {/*productBlurList[index]*/
+        {productBlurList[index]
             productList.map((product: any, index: any) => {
                 return <Product key={product.id} product={product} blurUrl={blurImageUrl}/>
             })
@@ -95,4 +95,4 @@ function Product({ product, blurUrl } : any) {
         </div>
     );
 
-}
+}*/
