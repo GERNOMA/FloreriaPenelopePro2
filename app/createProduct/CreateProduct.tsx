@@ -48,12 +48,14 @@ export default function CreateProduct({ categories }: any){
 
     const uploadFile = async (file: any) => {
 
-        let { data } = await axios.post("/api/s3/uploadFile", {
+        await axios.post("/api/s3/uploadFile", {
             name: file.name,
             type: file.type,
         });
+
+        
     
-        console.log(data);
+        /*console.log(data);
     
         const url = data.url;
         let { data: newData } = await axios.put(url, file, {
@@ -61,7 +63,7 @@ export default function CreateProduct({ categories }: any){
             "Content-type": file.type,
             "Access-Control-Allow-Origin": "*",
             },
-        });
+        });*/
     }
 
     const createProduct = async () => {
@@ -69,8 +71,8 @@ export default function CreateProduct({ categories }: any){
 
         blurImage.name = `blur-${image.name}`;
 
-        await uploadFile(image);
-        await uploadFile(blurImage);
+         uploadFile(image);
+         uploadFile(blurImage);
 
         await uploadProduct();
 

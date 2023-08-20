@@ -22,9 +22,16 @@ const uploadFile = async (req: NextApiRequest, res: NextApiResponse) => {
       Key: name,
     });
 
-    const url = await getSignedUrl(s3Client, command, { expiresIn: 600 });
-
-    res.status(200).json({ url });
+    //const url = await getSignedUrl(s3Client, command, { expiresIn: 600 });
+    try {
+      console.log(2222);
+      const response = await s3Client.send(command);
+      console.log(response);
+      res.status(200);
+    } catch (err) {
+      console.error(err);
+      res.status(300);
+    }
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: err });
