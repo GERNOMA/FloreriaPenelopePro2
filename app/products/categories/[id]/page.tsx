@@ -58,7 +58,7 @@ export default async function ProductsRender({ params }: any) {
         const promises = productList.map((product: any) => getBlurImage(product));
         await Promise.all(promises);
         console.timeEnd("for of");
-    }*/
+    }1*/
 
     //await getBlurImages();
 
