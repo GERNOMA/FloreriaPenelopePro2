@@ -59,10 +59,10 @@ export default function NavigationBar({ categories }: any){
                 }
             </div>
             <div className='sm:hidden flex p-3 flex-row flex-wrap justify-between'>
-                <div className='no-underline'>
-                    <Image className='w-10 aspect-square object-cover align-center' src='https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/cat.webp' priority={true} alt='Icono'
+                {/*<div className='no-underline'>
+                    <Image className='w-10 aspect-square object-cover align-center' src='https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/dog.webp' priority={true} alt='Icono'
                         width={100} height={100}/>
-                </div>
+            </div>*/}
 
                 <div className='no-underline p-2' onClick={() => setMovileNav(!movileNav)}>
                     <AiOutlineMenu size={20}/>
