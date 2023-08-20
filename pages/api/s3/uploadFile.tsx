@@ -5,7 +5,11 @@ import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-id
 import { CognitoIdentityClient, CreateIdentityPoolCommand } from "@aws-sdk/client-cognito-identity";
 
 const s3Client = new S3Client({
-
+  region: "sa-east-1", // replace with your bucket region
+  credentials: fromCognitoIdentityPool({
+    client: new CognitoIdentityClient({ region: "sa-east-1" }), // replace with your bucket region
+    identityPoolId: "sa-east-1:8850ea07-92fc-4af2-9f00-e4fd66f7f3ae", // replace with your Identity Pool ID
+  }),
 });
 
 
