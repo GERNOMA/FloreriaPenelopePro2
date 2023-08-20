@@ -26,9 +26,9 @@ const uploadFile = async (req: NextApiRequest, res: NextApiResponse) => {
       Key: name,
     });
 
-    //const url = await getSignedUrl(s3Client, command, { expiresIn: 600 });
-    await s3Client.send(command);
-    res.status(200).json({ message: 'aa' });
+    const url = await getSignedUrl(s3Client, command, { expiresIn: 600 });
+
+    res.status(200).json({ url });
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: err });

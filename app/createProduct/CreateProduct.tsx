@@ -56,13 +56,13 @@ export default function CreateProduct({ categories }: any){
     
         console.log(data);
     
-        /*const url = data.url;
+        const url = data.url;
         let { data: newData } = await axios.put(url, file, {
             headers: {
             "Content-type": file.type,
             "Access-Control-Allow-Origin": "*",
             },
-        });*/
+        });
     }
 
     const createProduct = async () => {
