@@ -6,6 +6,8 @@ import { get } from "http";
 import Link from "next/link";
 import Image from 'next/image';
 import getBase64 from "../../../utilities/getBase64";
+import { useRouter } from 'next/navigation';
+import Product from "./product";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -73,34 +75,4 @@ export default async function ProductsRender({ params }: any) {
         }
     </div>
     );
-}
-
-function Product({ product, blurUrl } : any) {
-
-    const {id, name, description, price, imageName} = product || {};
-
-    const timeStamp = new Date().getTime()
-
-    return (
-        <div className='w-100vw m-5 sms:min-w-[300px] sms:w-[25%] sms:m-2 sms:inline-block sms:align-top'>
-            <Link href={`/products/${id}`}>
-                <Image src={`${BUCKET_URL}${imageName}?${timeStamp}`} priority={true}
-                width={500}
-                height={500}
-                quality={75}
-                blurDataURL={blurUrl}
-                placeholder="blur"
-                style={{
-                    objectFit: 'cover',
-                    aspectRatio: '1/1'
-                }}
-                //sizes='100vw'
-                className='object-cover rounded-md w-[100vw] md:h-auto aspect-square' alt='Producto'/>
-                <p className='no-underline text-black italic text-[17px] mt-3'>{name}</p>
-                <p className='no-underline text-gray-500 text-[17px]'>{description}</p>
-                <p className='no-underline text-black text-[20px] mt-3'>${price}</p>
-            </Link>
-        </div>
-    );
-
 }
