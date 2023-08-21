@@ -105,7 +105,7 @@ export default function CreateProduct({ categories }: any){
 
         var options = {
             maxSizeMB: 1,
-            maxWidthOrHeight: 500,
+            maxWidthOrHeight: 1000,
             useWebWorker: true,
             fileType: 'image/webp',
             initialQuality: 0.8,
