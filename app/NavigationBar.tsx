@@ -1,18 +1,19 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from 'next/image';
+import { getServerSession } from "next-auth";
+import { options } from './api/auth/[...nextauth]/options';
  
 
 
-export default function NavigationBar({ categories }: any){
+export default function NavigationBar({ categories, session }: any){
 
     const [movileNav, setMovileNav] = useState(false);
-
     return (
         <nav className='bg-gray-300 fixed top-0 left-0 right-0 z-10'>
             <div className={movileNav
@@ -25,12 +26,14 @@ export default function NavigationBar({ categories }: any){
                     <Link href='/' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
                         Home
                     </Link>
-                    {/*<Link href='/products' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
-                        Productos
-                    </Link>*/}
-                    <Link href='/createProduct' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
-                        Agregar
-                    </Link>
+                    
+                    {   
+                        (session && session?.user?.name == "GERNOMA") &&
+                            <Link href='/createProduct' className='no-underline my-4'>
+                                Agregar
+                            </Link>
+                    }
+                    
                     {
                         categories.map((product: any) => {
                             return (<Link  key={product.id} href={`/products/categories/${product.id}`} className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
@@ -44,12 +47,14 @@ export default function NavigationBar({ categories }: any){
                 <Link href='/' className='no-underline p-2'>
                 Home
                 </Link>
-                {/*<Link href='/products' className='no-underline p-2'>
-                Productos
-                </Link>*/}
-                <Link href='/createProduct' className='no-underline p-2'>
-                Agregar
-                </Link>
+
+                {   
+                    (session && session?.user?.name == "GERNOMA") &&
+                        <Link href='/createProduct' className='no-underline p-2'>
+                            Agregar
+                        </Link>
+                }
+
                 {
                 categories.map((product: any) => {
                     return (<Link key={product.id} href={`/products/categories/${product.id}`} className='no-underline p-2'>

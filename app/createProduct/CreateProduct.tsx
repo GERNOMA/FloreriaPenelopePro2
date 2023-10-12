@@ -66,39 +66,51 @@ export default function CreateProduct({ categories }: any){
     }
 
     const createProduct = async () => {
-        setUploadingStatus('Subiendo...');
+        if(title != '' && description != '' && price != 0 && image != null && productCategory != null && productCategory != 'elejí'){
 
-        blurImage.name = `blur-${image.name}`;
+            setUploadingStatus('Subiendo...');
 
-        await uploadFile(image);
-        await uploadFile(blurImage);
+            blurImage.name = `blur-${image.name}`;
+    
+            await uploadFile(image);
+            await uploadFile(blurImage);
+    
+            await uploadProduct();
+    
+            setUploadingStatus('Exitoso...');
 
-        await uploadProduct();
-
-        setUploadingStatus('Exitoso...');
+        }
+        else{
+            setUploadingStatus('Te faltó algo anciana');
+        }
     }
 
     const createCategory = async () => {
-        setUploadingStatusCategory('Subiendo...');
+        if(titleCategoty != ''){
+            setUploadingStatusCategory('Subiendo...');
 
-        const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/createCategory', {
-            method: 'POST',
-            cache: 'no-store',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name: titleCategoty
-            }),
-        })
+            const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/createCategory', {
+                method: 'POST',
+                cache: 'no-store',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: titleCategoty
+                }),
+            })
+        
+            if (!res.ok) {
+                throw new Error('Failed to fetch data')
+            }
     
-        if (!res.ok) {
-            throw new Error('Failed to fetch data')
+            setUploadingStatusCategory('Exitoso...');
+    
+            router.refresh();
         }
-
-        setUploadingStatusCategory('Exitoso...');
-
-        router.refresh();
+        else{
+            setUploadingStatusCategory('Te faltó algo anciana');
+        }
     }
 
     const compressFile = async (file: any) => {

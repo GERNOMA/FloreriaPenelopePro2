@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import NavigationBar from './NavigationBar'
+import { getServerSession } from 'next-auth/next'
+import { options } from './api/auth/[...nextauth]/options'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,12 +38,14 @@ export default async function RootLayout({
 }) {
 
   await getCategories();
-
+  
+  const sessionData = await getServerSession(options);
+  
   return (
     <html lang='es'>
       <body className={inter.className}>
         <main>
-          <NavigationBar categories={categories}/>
+          <NavigationBar categories={categories} session={sessionData}/>
           <div className='w-max h-20'></div>
           {children}
         </main>
