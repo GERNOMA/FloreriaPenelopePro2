@@ -59,11 +59,11 @@ function Product({ product, blurUrl } : any){
 
     return (
         <div className="p-5 sms:m-auto sms:align-top sms:max-w-[700px]">
-            <Image src={`${BUCKET_URL}${imageName}`}
+            <img src={`${BUCKET_URL}${imageName}`}
                 width={500}
                 height={500}
-                quality={75}
-                blurDataURL={blurUrl}
+                //quality={75}
+                //blurDataURL={blurUrl}
                 placeholder="blur"
                 style={{
                     objectFit: 'cover',
