@@ -42,11 +42,11 @@ export default function Product({ product, blurUrl, session } : any) {
     return (
         <div className='w-100vw m-5 sms:min-w-[300px] sms:w-[25%] sms:m-2 sms:inline-block sms:align-top'>
             <Link href={`/products/${id}`}>
-                <Image src={`${BUCKET_URL}${imageName}?${timeStamp}`} priority={true}
+                <img src={`${BUCKET_URL}${imageName}?${timeStamp}`} //priority={true}
                 width={500}
                 height={500}
-                quality={75}
-                blurDataURL={blurUrl}
+                //quality={75}
+                //blurDataURL={blurUrl}
                 placeholder="blur"
                 style={{
                     objectFit: 'cover',
