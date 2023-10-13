@@ -70,7 +70,7 @@ function Product({ product, blurUrl } : any){
                     aspectRatio: '1/1'
                 }}
                 className="object-cover rounded-md w-[100vw] sms:w-[60%] sms:h-auto aspect-square sms:inline-block" alt='Producto'/>
-            <div className="sms:inline-block sms:align-top sms:ml-3">
+            <div className="sms:inline-block sms:align-top">
                 <p className="no-underline text-black italic text-[17px] mt-3">{name}</p>
                 <p className="no-underline text-gray-500 text-[17px]">{description}</p>
                 <p className="no-underline text-black text-[20px] mt-3">${price}</p>

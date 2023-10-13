@@ -19,6 +19,8 @@ export default function CreateProduct({ categories }: any){
     const [uploadingStatus, setUploadingStatus] = useState('');
     const [titleCategoty, setTitleCategory] = useState('');
     const [uploadingStatusCategory, setUploadingStatusCategory] = useState('');
+    const [deleteProductCategoryId, setDeleteProductCategory] = useState<any>();
+    const [deletingProductCategoryStatus, setDeletingProductCategoryStatus] = useState('');
 
     const router = useRouter();
 
@@ -113,6 +115,34 @@ export default function CreateProduct({ categories }: any){
         }
     }
 
+    const deleteCategory = async () => {
+        if(deleteProductCategoryId != null && deleteProductCategoryId != 'elejí'){
+            setDeletingProductCategoryStatus('Borrando...');
+
+            const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/deleteCategory', {
+                method: 'POST',
+                cache: 'no-store',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: deleteProductCategoryId
+                }),
+            })
+        
+            if (!res.ok) {
+                throw new Error('Failed to fetch data')
+            }
+    
+            setDeletingProductCategoryStatus('Exitoso...');
+    
+            router.refresh();
+        }
+        else{
+            setDeletingProductCategoryStatus('Te faltó algo anciana');
+        }
+    }
+
     const compressFile = async (file: any) => {
 
         var options = {
@@ -176,6 +206,21 @@ export default function CreateProduct({ categories }: any){
                 Crear
             </button>
             {uploadingStatusCategory && <p className='text-center mt-2'>{uploadingStatusCategory}</p>}
+
+            <select className="p-2 m-2 mt-[100px]" onChange={(e: any) => setDeleteProductCategory(e.target.value)}>
+                {
+                    categories.map((product: any) => {
+                        return <option key={product.id} value={product.id}>{product.name}</option>
+                    })
+                }
+                <option key='-1' value='caca' selected={true}>elejí</option>
+            </select>
+            <button
+                onClick={deleteCategory}
+                className='m-auto p-2 bg-red-500'>
+                Borrar
+            </button>
+            {deletingProductCategoryStatus && <p className='text-center mt-2'>{deletingProductCategoryStatus}</p>}
         </div>
     );
 }
