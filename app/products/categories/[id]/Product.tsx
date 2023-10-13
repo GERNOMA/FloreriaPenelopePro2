@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 
 const BUCKET_URL = "https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/";
 
-export default function Product({ product, blurUrl } : any) {
+export default function Product({ product, blurUrl, session } : any) {
 
     const {id, name, description, price, imageName} = product || {};
 
@@ -58,11 +58,14 @@ export default function Product({ product, blurUrl } : any) {
                 <p className='no-underline text-gray-500 text-[17px]'>{description}</p>
                 <p className='no-underline text-black text-[20px] mt-3'>${price}</p>
             </Link>
-                <button
-                    onClick={() => deleteProduct(name, id)}
-                    className='m-auto p-2 bg-red-500'>
-                    Boorar
-                </button>
+            {   
+                (session && session?.user?.name == "Alejandra Vicente") &&
+                    <button
+                        onClick={() => deleteProduct(name, id)}
+                        className='m-auto p-2 bg-red-500'>
+                        Boorar
+                    </button>
+            }
         </div>
     );
 

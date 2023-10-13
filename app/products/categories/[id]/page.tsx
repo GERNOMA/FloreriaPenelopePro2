@@ -8,6 +8,8 @@ import Image from 'next/image';
 import getBase64 from "../../../utilities/getBase64";
 import { useRouter } from 'next/navigation';
 import Product from "./Product";
+import { getServerSession } from 'next-auth/next'
+import { options } from '../../../api/auth/[...nextauth]/options';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -66,11 +68,13 @@ export default async function ProductsRender({ params }: any) {
 
     const blurImageUrl = await getBase64(`${BUCKET_URL}cat.webp`);
 
+    const session = await getServerSession(options);
+
     return (
     <div className="sms:m-auto sms:max-w-[1500px] flex flex-col sms:flex-row flex-wrap justify-center">
         {/*productBlurList[index]*/
             productList.map((product: any, index: any) => {
-                return <Product key={product.id} product={product} blurUrl={blurImageUrl}/>
+                return <Product key={product.id} product={product} blurUrl={blurImageUrl} session={session}/>
             })
         }
     </div>

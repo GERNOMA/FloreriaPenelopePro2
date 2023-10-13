@@ -39,13 +39,13 @@ export default async function RootLayout({
 
   await getCategories();
   
-  const sessionData = await getServerSession(options);
+  const session = await getServerSession(options);
   
   return (
     <html lang='es'>
       <body className={inter.className}>
         <main>
-          <NavigationBar categories={categories} session={sessionData}/>
+          <NavigationBar categories={categories} session={session}/>
           <div className='w-max h-20'></div>
           {children}
         </main>

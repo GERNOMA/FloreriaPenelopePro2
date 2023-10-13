@@ -28,7 +28,7 @@ export default function NavigationBar({ categories, session }: any){
                     </Link>
                     
                     {   
-                        (session && session?.user?.name == "GERNOMA") &&
+                        (session && session?.user?.name == "Alejandra Vicente") &&
                             <Link href='/createProduct' className='no-underline my-4'>
                                 Agregar
                             </Link>
@@ -49,7 +49,7 @@ export default function NavigationBar({ categories, session }: any){
                 </Link>
 
                 {   
-                    (session && session?.user?.name == "GERNOMA") &&
+                    (session && session?.user?.name == "Alejandra Vicente") &&
                         <Link href='/createProduct' className='no-underline p-2'>
                             Agregar
                         </Link>
