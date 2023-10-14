@@ -1,7 +1,7 @@
 import { getProviders, signIn, useSession } from 'next-auth/react';
 import { getServerSession } from 'next-auth/next'
 import { options } from '../api/auth/[...nextauth]/options';
-import RegisterForm from './registerForm';
+import RegisterForm from './RegisterForm';
 
 export default async function Name() {
 
