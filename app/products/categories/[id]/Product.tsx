@@ -53,10 +53,13 @@ export default function Product({ product, blurUrl, session } : any) {
                     aspectRatio: '1/1'
                 }}
                 //sizes='100vw'
-                className='object-cover rounded-md w-[100vw] md:h-auto aspect-square' alt='Producto'/>
-                <p className='no-underline text-black italic text-[17px] mt-3'>{name}</p>
-                <p className='no-underline text-gray-500 text-[17px]'>{description}</p>
-                <p className='no-underline text-black text-[20px] mt-3'>${price}</p>
+                className='object-cover rounded-lg w-full md:w-[500px] sms:h-auto aspect-square sms:inline-block' alt='Producto'/>
+                <p className='no-underline text-black font-semibold text-[18px] mt-3'>{name}</p>
+                <div className='h-[100px] overflow-hidden relative'>
+                    <p className='no-underline text-gray-500 text-[16px]'>{description}</p>
+                    <div className='absolute bottom-0 left-0 w-full h-full' style={{background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,1) 100%)'}}></div>
+                </div>
+                <p className='no-underline text-black font-bold text-[22px] mt-3'>${price}</p>
             </Link>
             {   
                 (session && session?.user?.name == "Alejandra Vicente") &&

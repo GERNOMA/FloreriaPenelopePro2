@@ -217,10 +217,10 @@ export default function CreateProduct({ categories }: any){
             </select>
             <button
                 onClick={deleteCategory}
-                className='m-auto p-2 bg-red-500'>
+                className='m-auto p-2 bg-red-500 mb-6'>
                 Borrar
             </button>
-            {deletingProductCategoryStatus && <p className='text-center mt-2'>{deletingProductCategoryStatus}</p>}
+            {deletingProductCategoryStatus && <p className='text-center mt-2 mb-6'>{deletingProductCategoryStatus}</p>}
         </div>
     );
 }
