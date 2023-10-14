@@ -17,8 +17,8 @@ export default function NavigationBar({ categories, session }: any){
     return (
         <nav className='bg-gray-100 fixed top-0 left-0 right-0 z-10'>
             <div className={movileNav
-                    ? 'fixed left-0 top-0 w-[50%] h-screen p-10 ease-in duration-500'
-                    : 'fixed left-[-100%] w-[50%] h-screen top-0 p-10 ease-in duration-500'}>
+                    ? 'fixed left-0 top-0 w-[50%] h-screen p-10 bg-gray-100 ease-in duration-300'
+                    : 'fixed left-[-100%] w-[50%] h-screen top-0 p-10 ease-in duration-300'}>
                 <div className='flex flex-col'>
                     <div onClick={() => setMovileNav(!movileNav)} className="my-4">
                         <AiOutlineClose size={20}/>

@@ -53,7 +53,7 @@ export default function Product({ product, blurUrl, session } : any) {
                     aspectRatio: '1/1'
                 }}
                 //sizes='100vw'
-                className='object-cover rounded-lg w-full md:w-[500px] sms:h-auto aspect-square sms:inline-block' alt='Producto'/>
+                className='object-cover rounded-lg w-full md:w-[500px] sms:h-auto aspect-square sms:inline-block hover:scale-[103%]' alt='Producto'/>
                 <p className='no-underline text-black font-semibold text-[18px] mt-3'>{name}</p>
                 <div className='h-[100px] overflow-hidden relative'>
                     <p className='no-underline text-gray-500 text-[16px]'>{description}</p>

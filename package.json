@@ -18,14 +18,16 @@
     "@types/react-dom": "18.2.7",
     "axios": "^1.4.0",
     "browser-image-compression": "^2.0.2",
+    "cookies-next": "^4.0.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
-    "next": "13.4.12",
+    "next": "^13.5.4",
     "next-auth": "^4.22.3",
     "plaiceholder": "^3.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
+    "sharp": "^0.32.6",
     "typescript": "5.1.6"
   },
   "devDependencies": {

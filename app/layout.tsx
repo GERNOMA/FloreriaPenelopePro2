@@ -5,6 +5,7 @@ import Link from 'next/link'
 import NavigationBar from './NavigationBar'
 import { getServerSession } from 'next-auth/next'
 import { options } from './api/auth/[...nextauth]/options'
+import CartIcon from './CartIcon'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -47,6 +48,7 @@ export default async function RootLayout({
         <main>
           <NavigationBar categories={categories} session={session}/>
           <div className='w-max h-20'></div>
+          <CartIcon/>
           {children}
         </main>
       </body>
