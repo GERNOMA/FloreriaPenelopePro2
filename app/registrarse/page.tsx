@@ -1,27 +1,17 @@
-//'use client';
-import { useState } from "react";
-import axios from "axios";
-import { Inter } from "next/font/google";
-import { get } from "http";
-import Link from "next/link";
-import Image from 'next/image';
+import { getProviders, signIn, useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth/next'
 import { options } from '../api/auth/[...nextauth]/options';
-import { getServerSession } from "next-auth";
+import RegisterForm from './registerForm';
 
-export default async function ProductRender({ params }: any) {
+export default async function Name() {
 
     const session = await getServerSession(options);
+    const providers = await getProviders();
 
     return (
-        <div className='flex flex-col items-center justify-center m-5'>
-            <p className='text-3xl text-center'>{session?.user?.name}</p>
-            <img src={session?.user?.image ?? ''} className='text-3xl text-center' />
-            <Link href={''}>
-                <button className="no-underline text-black text-[20px] bg-green-500 rounded-3xl px-4 py-2 my-5">Google</button>
-            </Link>
-            <Link href={''}>
-                <button className="no-underline text-black text-[20px] bg-green-500 rounded-3xl px-4 py-2 my-5">Sin Google</button>
-            </Link>
-        </div>
-    );
+        <>
+            <p className='text-3xl text-center'>Registrarse</p>
+            <RegisterForm session={session} providers={providers}/>
+        </>
+    )
 }

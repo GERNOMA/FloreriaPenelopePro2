@@ -11,24 +11,18 @@ export const options: NextAuthOptions = {
         CredentialsProvider({
             name: 'Credentials',
             credentials: {
-                username: {
-                    label: 'Username:',
-                    type: 'text',
-                    placeholder: 'ingresa tu username!'
-                },
-                password: {
-                    label: 'Cont:',
-                    type: 'text',
-                    placeholder: 'ingresa tu Cont!'
-                },
+                username: { label: "Username", type: "text" },
+                password: {  label: "Password", type: "password" }
             },
             async authorize(credentials){
-                const user = { id: '42', mail: 'Dave', password: 'jajja' };
+                const user = { id: 1, name: 'Jose', email: 'jsmith@example.com' }
 
-                if(credentials?.username == user.mail && credentials?.password == user.password){
-                    return user;
-                } else{
-                    return null;
+                const isValid = (credentials?.username === user.name && credentials?.password === 'password')
+        
+                if (isValid) {
+                  return Promise.resolve(user)
+                } else {
+                  return Promise.resolve(null)
                 }
             }
         }),

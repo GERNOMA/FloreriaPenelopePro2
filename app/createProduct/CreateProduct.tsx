@@ -180,10 +180,10 @@ export default function CreateProduct({ categories }: any){
 
     return (
         <div className='flex flex-col items-center'>
-            <input type="text" placeholder="Título" onChange={(e: any) => setTitle(e.target.value)} className='p-2 m-2 block text-black' />
-            <input type="text" placeholder="Descripción" onChange={(e: any) => setDescription(e.target.value)} className="p-2 m-2 block text-black"/>
-            <input type="number" placeholder="Precio" onChange={(e: any) => setPrice(e.target.value)} className="p-2 m-2 block text-black"/>
-            <input type="file" onChange={(e: any) => compressFile(e.target.files[0])} className="p-2 m-2 block text-black"/>
+            <input type="text" placeholder="Título" onChange={(e: any) => setTitle(e.target.value)} className='p-2 m-2 block text-black border border-gray-300' />
+            <input type="text" placeholder="Descripción" onChange={(e: any) => setDescription(e.target.value)} className="p-2 m-2 block text-black border border-gray-300"/>
+            <input type="number" placeholder="Precio" onChange={(e: any) => setPrice(e.target.value)} className="p-2 m-2 block text-black border border-gray-300"/>
+            <input type="file" onChange={(e: any) => compressFile(e.target.files[0])} className="p-2 m-2 block text-black border border-gray-300"/>
             <select className="p-2 m-2" onChange={(e: any) => setProductCategory(e.target.value)}>
                 {
                     categories.map((product: any) => {
@@ -199,7 +199,7 @@ export default function CreateProduct({ categories }: any){
             </button>
             {uploadingStatus && <p className='text-center'>{uploadingStatus}</p>}
 
-            <input type="text" placeholder="Título" onChange={(e: any) => setTitleCategory(e.target.value)} className='p-2 m-2 mt-[100px] block text-black' />
+            <input type="text" placeholder="Título" onChange={(e: any) => setTitleCategory(e.target.value)} className='p-2 m-2 mt-[100px] block text-black border border-gray-300'/>
             <button
                 onClick={createCategory}
                 className='m-auto p-2 bg-green-500'>

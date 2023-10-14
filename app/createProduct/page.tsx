@@ -33,7 +33,7 @@ export default async function Home() {
 
     return (
     <div className=''>
-        <p className='text-3xl text-center m-2'>Subir producto <b>de manera formal</b></p>
+        <p className='text-3xl text-center m-2'>Subir producto <b>de manera anal</b></p>
         <CreateProduct categories={categories}/>
     </div>
     );
