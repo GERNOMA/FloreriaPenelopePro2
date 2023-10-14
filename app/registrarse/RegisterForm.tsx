@@ -41,12 +41,16 @@ export default function RegisterForm({session, providers}: any) {
             password: password
         }),
     })
-    console.log(JSON.stringify(res));
+
+    const resultString = await res.text();
+
     if (!res.ok) {
         throw new Error('Failed to fetch data')
+    } else if(resultString == 'ok'){
+      setRegisterState('Cuenta creada con éxito')
+    } else if(resultString == 'repeated'){
+      setRegisterState('este mail ya existe')
     }
-
-    setRegisterState('Creado con éxito');
 
   };
 
