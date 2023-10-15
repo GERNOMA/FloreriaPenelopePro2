@@ -3,7 +3,7 @@ import { useItemsCartContext } from '@/app/contexts/itemsCarContext';
 import { setCookie, getCookie } from 'cookies-next';   
 
 import Link from "next/link";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const BUCKET_URL = "https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/";
