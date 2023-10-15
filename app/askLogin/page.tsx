@@ -1,4 +1,4 @@
-//'use client';
+'use client';
 import { useState } from "react";
 import axios from "axios";
 import { Inter } from "next/font/google";
@@ -6,7 +6,7 @@ import { get } from "http";
 import Link from "next/link";
 import Image from 'next/image';
 
-export default async function ProductRender({ params }: any) {
+export default function ProductRender({ params }: any) {
 
     return (
         <div className='flex flex-col items-center justify-center m-5'>

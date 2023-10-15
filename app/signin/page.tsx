@@ -15,7 +15,7 @@ export default async function ProductRender({ params }: any) {
     return (
         <div className='flex flex-col items-center justify-center m-5'>
             <p className='text-3xl text-center'>{session?.user?.name}</p>
-            <img src={session?.user?.image ?? ''} className='text-3xl text-center' />
+            <img src={session?.user?.image ?? ''} className='text-3xl text-center' alt=''/>
             <Link href={''}>
                 <button className="no-underline text-black text-[20px] bg-green-500 rounded-3xl px-4 py-2 my-5">Google</button>
             </Link>

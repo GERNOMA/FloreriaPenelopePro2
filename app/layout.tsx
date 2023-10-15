@@ -6,6 +6,7 @@ import NavigationBar from './NavigationBar'
 import { getServerSession } from 'next-auth/next'
 import { options } from './api/auth/[...nextauth]/options'
 import CartIcon from './CartIcon'
+import ItemsCartContrextProvicer from './contexts/itemsCarContext';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -46,10 +47,12 @@ export default async function RootLayout({
     <html lang='es'>
       <body className={inter.className}>
         <main>
-          <NavigationBar categories={categories} session={session}/>
-          <div className='w-max h-20'></div>
-          <CartIcon/>
-          {children}
+          <ItemsCartContrextProvicer>
+            <NavigationBar categories={categories} session={session}/>
+            <div className='w-max h-20'></div>
+            <CartIcon/>
+            {children}
+          </ItemsCartContrextProvicer>
         </main>
       </body>
     </html>

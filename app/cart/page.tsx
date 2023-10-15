@@ -72,7 +72,7 @@ export default function ProductRender({ params }: any) {
                 <div className="lg:max-w-[500px] w-auto flex flex-col sms:flex-row flex-wrap bg-gray-300 py-2 mx-10 rounded-3xl">
                     {
                         productList.map((product: any, index: number) => {
-                            return <Product key={product.id} product={product} blurUrl={`${BUCKET_URL}cat.webp`} quantity={productListQuantities[index]} setHasLoaded={setHasLoaded}/>
+                            return <Product key={product.id} product={product} /*blurUrl={`${BUCKET_URL}cat.webp`}*/ quantity={productListQuantities[index]} setHasLoaded={setHasLoaded}/>
                         })
                     }
                     {

@@ -15,6 +15,9 @@ module.exports = {
       },
       screens: {
         'sms': '600px',
+      },
+      animation: {
+        'bounce-short': 'spin 1s ease-in-out 1'
       }
     },
   },

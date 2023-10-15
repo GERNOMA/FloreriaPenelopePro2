@@ -1,4 +1,5 @@
 'use client';
+import { useItemsCartContext } from '@/app/contexts/itemsCarContext';
 import { setCookie, getCookie } from 'cookies-next';   
 
 import Link from "next/link";
@@ -12,12 +13,16 @@ export default function Product({ product, blurUrl } : any){
 
     const {id, name, description, price, imageName} = product || {};
 
+    const {numberOfItemsInCart, setNumberOfItemsInCart}: any = useItemsCartContext();
+
     const addToCart = () => {
 
         //setCookie('cart', JSON.stringify({}))
         const currentCartIds = JSON.parse(getCookie('cart') || '{}');
     
         var newCartIds: any = {};
+
+        setNumberOfItemsInCart(numberOfItemsInCart + numberOfItemsToAddToCart);
 
         if(Object.keys(currentCartIds).includes(String(id))){
             newCartIds = {...currentCartIds, [id]: currentCartIds[id] + numberOfItemsToAddToCart};
@@ -26,12 +31,12 @@ export default function Product({ product, blurUrl } : any){
         }
     
         setCookie('cart', JSON.stringify(newCartIds))
-    
+
         console.log('dwadwadw    ' + getCookie('cart')); 
     };
 
     return (
-        <div className="px-[15%] lg:p-5 lg:m-auto lg:align-top lg:flex flex-col lg:flex-row lg:justify-between lg:max-w-[1400px]">
+        <div className="px-[15%] lg:p-5 lg:m-auto lg:align-top lg:flex flex-col lg:flex-row lg:max-w-[1400px]">
             <img src={`${BUCKET_URL}${imageName}`}
                 width={500}
                 height={500}

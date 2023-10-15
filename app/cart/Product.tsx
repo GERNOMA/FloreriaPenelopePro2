@@ -3,14 +3,15 @@ import { setCookie, getCookie } from 'cookies-next';
 
 import Link from "next/link";
 import { useState } from 'react';
+import { useItemsCartContext } from '../contexts/itemsCarContext';
 
 const BUCKET_URL = "https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/";
 
-export default function Product({ product, blurUrl, quantity, setHasLoaded } : any){
-
-    const [numberOfItemsToAddToCart, setNumberOfItemsToAddToCart] = useState(1);
+export default function Product({ product, /*blurUrl,*/ quantity, setHasLoaded } : any){
 
     const {id, name, description, price, imageName} = product || {};
+
+    const {numberOfItemsInCart, setNumberOfItemsInCart}: any = useItemsCartContext();
 
     const removeFromCart = () => {
         //setCookie('cart', JSON.stringify({}))
@@ -19,6 +20,7 @@ export default function Product({ product, blurUrl, quantity, setHasLoaded } : a
         var newCartIds: any = currentCartIds;
 
         if(Object.keys(newCartIds).includes(String(id))){
+            setNumberOfItemsInCart(numberOfItemsInCart - Number(newCartIds[String(id)]));
             delete newCartIds[String(id)];
         }
     
@@ -52,15 +54,6 @@ export default function Product({ product, blurUrl, quantity, setHasLoaded } : a
                 <span className='text-center text-2xl text-white'>X</span>
             </button>
         </div>
-        {/*<div className='flex flex-row justify-between mt-2'>
-            <div className="inline-block">
-                <p className="no-underline text-black font-semibold text-[14px] break-words">{name}</p>
-                <p className="no-underline text-black font-bold text-[15px]">${price}</p>
-            </div>
-            <div className="inline-block">
-                <p className="no-underline text-black font-bold text-[15px]">ct. {quantity}</p>
-            </div>
-        </div>*/}
     </div>
     );
 
