@@ -96,7 +96,7 @@ export default function ProductRender({ params }: any) {
                         {
                             productList.map((product: any, index: number) => {
                                 return(
-                                    <div className="flex flex-row justify-between">
+                                    <div key={index} className="flex flex-row justify-between">
                                         <span className="mt-4 ml-4 text-left text-2xl text-white">{productListQuantities[index]} X {product.name}</span>
                                         <span className="mt-4 mr-4 text-left text-2xl text-white">${(product.price * productListQuantities[index]).toLocaleString('es-AR')}</span>
                                     </div>
