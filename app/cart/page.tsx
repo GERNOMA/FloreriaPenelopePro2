@@ -20,6 +20,7 @@ export default function ProductRender({ params }: any) {
     const [cartText, setCartText] = useState('Cargando...');
     const [productList, setProductList] = useState([]);
     const [productListQuantities, setProductListQuantities] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [hasLoaded, setHasLoaded] = useState(false);
 
     useEffect(() =>{
@@ -28,7 +29,7 @@ export default function ProductRender({ params }: any) {
 
             const currentCartIds = JSON.parse(getCookie('cart') || '{}');
         
-            const valuesOfCurrentCartId: any = Object.keys(currentCartIds);
+            const keysOfCurrentCartId: any = Object.keys(currentCartIds);
         
             console.log('dwdwadad ' + JSON.stringify(currentCartIds));
         
@@ -38,7 +39,7 @@ export default function ProductRender({ params }: any) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ ids: valuesOfCurrentCartId }),
+                body: JSON.stringify({ ids: keysOfCurrentCartId }),
             });
             
             if (!res.ok) {
@@ -46,9 +47,17 @@ export default function ProductRender({ params }: any) {
             }
             
             var result = await res.json();
-            console.log('11111 ' + JSON.stringify(result));
+
+            var newTotalValue = 0;
+            const valuesOfCurrentCartId: any = Object.values(currentCartIds);
+
+            for(var i = 0; i < valuesOfCurrentCartId.length; i++){
+                newTotalValue += result.contacts[i].price * valuesOfCurrentCartId[i];
+            }
+            setTotalPrice(newTotalValue);
+
             setProductList(result.contacts);
-            setProductListQuantities(Object.values(currentCartIds));
+            setProductListQuantities(Object.values(valuesOfCurrentCartId));
             setHasLoaded(true);
 
             if(result.contacts.length == 0) {
@@ -68,12 +77,35 @@ export default function ProductRender({ params }: any) {
     return (
     <div>
         <main>
-            <div className='max-w-[1200px] m-auto'>
-                <div className="lg:max-w-[500px] w-auto flex flex-col sms:flex-row flex-wrap bg-gray-300 py-2 mx-10 rounded-3xl">
+            <div className='max-w-[1200px] m-auto flex flex-col lg:flex-row'>
+                <div className="lg:w-[500px] w-auto h-min flex flex-col sms:flex-row flex-wrap bg-gray-300 p-4 mx-10 rounded-3xl">
                     {
                         productList.map((product: any, index: number) => {
                             return <Product key={product.id} product={product} /*blurUrl={`${BUCKET_URL}cat.webp`}*/ quantity={productListQuantities[index]} setHasLoaded={setHasLoaded}/>
                         })
+                    }
+                    {
+                        (cartText != '') && <span className="w-full text-center font-bold">{cartText}</span>
+                    }
+                </div>
+                <div className="lg:w-[500px] flex flex-col min-con h-min bg-blue-300 p-4 mx-10 rounded-3xl my-10 lg:my-0">
+                    {
+                        (cartText == '') &&
+                        <span className="w-full text-center text-3xl text-white">Detalles</span>
+                    }
+                        {
+                            productList.map((product: any, index: number) => {
+                                return(
+                                    <div className="flex flex-row justify-between">
+                                        <span className="mt-4 ml-4 text-left text-2xl text-white">{productListQuantities[index]} X {product.name}</span>
+                                        <span className="mt-4 mr-4 text-left text-2xl text-white">${(product.price * productListQuantities[index]).toLocaleString('es-AR')}</span>
+                                    </div>
+                                );
+                            })
+                        }
+                    {
+                        (cartText == '') &&
+                            <span className="mt-4 ml-4 text-left text-3xl text-white">Sub-total:  ${totalPrice.toLocaleString('es-AR')}</span>
                     }
                     {
                         (cartText != '') && <span className="w-full text-center font-bold">{cartText}</span>

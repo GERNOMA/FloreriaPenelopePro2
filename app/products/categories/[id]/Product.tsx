@@ -16,6 +16,8 @@ export default function Product({ product, blurUrl, session } : any) {
 
     const timeStamp = new Date().getTime()
 
+    const router = useRouter();
+
     const deleteProduct = async (_name: String, _id: BigInteger) => {
 
         if (confirm('Borrar (mi madre la gorda quiere borrar '+_name+' ?)')) {
@@ -40,27 +42,25 @@ export default function Product({ product, blurUrl, session } : any) {
     }
 
     return (
-        <div className='w-100vw m-5 sms:min-w-[300px] sms:w-[25%] sms:m-2 sms:inline-block sms:align-top'>
-            <Link href={`/products/${id}`}>
-                <img src={`${BUCKET_URL}${imageName}?${timeStamp}`} //priority={true}
-                width={500}
-                height={500}
-                //quality={75}
-                //blurDataURL={blurUrl}
-                placeholder="blur"
-                style={{
-                    objectFit: 'cover',
-                    aspectRatio: '1/1'
-                }}
-                //sizes='100vw'
-                className='object-cover rounded-lg w-full md:w-[500px] sms:h-auto aspect-square sms:inline-block hover:scale-[103%]' alt='Producto'/>
-                <p className='no-underline text-black font-semibold text-[18px] mt-3'>{name}</p>
-                <div className='h-[100px] overflow-hidden relative'>
-                    <p className='no-underline text-gray-500 text-[16px]'>{description}</p>
-                    <div className='absolute bottom-0 left-0 w-full h-full' style={{background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,1) 100%)'}}></div>
-                </div>
-                <p className='no-underline text-black font-bold text-[22px] mt-3'>${price}</p>
-            </Link>
+        <div onClick={(e: any) => router.replace(`/products/${id}`)} className='w-100vw m-5 sms:min-w-[300px] sms:w-[25%] sms:m-2 sms:inline-block sms:align-top hover:cursor-pointer'>
+            <img src={`${BUCKET_URL}${imageName}?${timeStamp}`} //priority={true}
+            width={500}
+            height={500}
+            //quality={75}
+            //blurDataURL={blurUrl}
+            placeholder="blur"
+            style={{
+                objectFit: 'cover',
+                aspectRatio: '1/1'
+            }}
+            //sizes='100vw'
+            className='object-cover rounded-lg w-full md:w-[500px] sms:h-auto aspect-square sms:inline-block hover:scale-[103%]' alt='Producto'/>
+            <p className='no-underline text-black font-semibold text-[18px] mt-3'>{name}</p>
+            <div className='h-[100px] overflow-hidden relative'>
+                <p className='no-underline text-gray-500 text-[16px]'>{description}</p>
+                <div className='absolute bottom-0 left-0 w-full h-full' style={{background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,1) 100%)'}}></div>
+            </div>
+            <p className='no-underline text-black font-bold text-[22px] mt-3'>${price.toLocaleString('es-AR')}</p>
             {   
                 (session && session?.user?.name == "Alejandra Vicente") &&
                     <button
