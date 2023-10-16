@@ -34,7 +34,7 @@ export default function CartIcon(){
 
         setBounceKey(bounceKey => bounceKey + 1);
 
-        if(bounce == false && bounceKey > 1){
+        if(bounce == false && bounceKey > 0){
             setBounce(true);
             setTimeout(() => setBounce(false), 1000); // adjust the time as needed
         }
@@ -42,7 +42,8 @@ export default function CartIcon(){
 
     return (
         <div onClick={(e: any) => router.replace('/cart')} className={`fixed right-[3%] bottom-10 bg-blue-300 rounded-full p-3 sms:p-5 opacity-80 flex items-center justify-center z-10 hover:cursor-pointer ${bounce ? 'animate-bounce-short' : ''}`}>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Ic_shopping_cart_48px.svg" alt="Google Icon" width={80} height={80} className='w-[50px] h-[50px] sms:w-[80px] sms:h-[80px]'/>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Ic_shopping_cart_48px.svg" alt="Google Icon" width={80} height={80}
+                className='w-[50px] h-[50px] sms:w-[80px] sms:h-[80px]'/>
             {(numberOfItemsInCart != -1) && <span className='text-center text-1xl sms:text-2xl text-white absolute top-[24%] sms:top-[28%]'>{numberOfItemsInCart}</span>}
         </div>
     );

@@ -2,6 +2,7 @@ import { getProviders, signIn } from 'next-auth/react';
 import Providers from './providers';
 import { getServerSession } from 'next-auth/next'
 import { options } from '../api/auth/[...nextauth]/options';
+import { useRouter } from 'next/navigation';
 
 export default async function Name() {
 

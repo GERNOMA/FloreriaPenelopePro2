@@ -56,7 +56,7 @@ export default function Product({ product, blurUrl } : any){
                 <p className="no-underline text-gray-500 text-[16px]">{description}</p>
                 <p className="no-underline text-black font-bold text-[22px] mt-3">${price.toLocaleString('es-AR')}</p>
                 <div className='flex flex-col lg:flex-row justify-between mt-4'>
-                    <button onClick={(e: any) => router.replace('/askLogin')} className="w-full lg:w-40 px-6 py-4 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none mb-4 lg:mb-0">Comprar</button>
+                    <button onClick={(e: any) => router.replace('/askLogin')} className="w-full lg:w-52 px-6 py-4 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none mb-4 lg:mb-0">Comprar ahora</button>
                     <div className='flex flex-row justify-between'>
                         <input onChange={(e: any) => setNumberOfItemsToAddToCart(Number(e.target.value))} type="number" min="1" max="99" defaultValue='1' placeholder="cantidad"
                             className="border border-gray-300 text-center rounded-md w-[25%] lg:w-[35%] lg:max-w-[55px] lg:ml-4" />

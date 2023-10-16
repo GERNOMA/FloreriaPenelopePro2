@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import { getProviders, signIn, useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 export default function RegisterForm({session, providers}: any) {
 
@@ -65,10 +66,13 @@ export default function RegisterForm({session, providers}: any) {
                 type="text" placeholder="Email" />
             <input onChange={(e: any) => setPassword(e.target.value)} className={`flex items-center justify-center px-4 py-4 border ${passwordEmpty ? 'border-red-500' : 'border-gray-300'} text-base font-medium rounded-md text-black bg-white hover:bg-gray-200 mb-4 focus:outline-none`}
                 type="password" placeholder="Contraseña" />
-            <button onClick={registerUser} className="w-full md:w-44 px-6 py-4 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none">
+            <button onClick={registerUser} className="w-44 px-6 py-4 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none">
                 <span>Registrarse</span>
             </button>
             {registerState && <p className='text-center mt-2'>{registerState}</p>}
+            <Link href={'/login'} className='mt-4 underline text-blue-400'>
+              Ya tengo una cuenta
+            </Link>
         </div>
     </>
   )
