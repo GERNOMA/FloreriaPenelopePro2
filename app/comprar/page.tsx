@@ -18,12 +18,25 @@ export default function ProductRender({ params }: any) {
     const [totalPrice, setTotalPrice] = useState(1);
     const [hasLoaded, setHasLoaded] = useState(false);
 
+    const productListRef = useRef([]);
+    productListRef.current = productList;
+
     const totalPriceRef = useRef(0);
     totalPriceRef.current = totalPrice;
 
     const searchParams = useSearchParams()
  
     const search = searchParams?.get('ids')
+
+    const buyerName = getCookie('buyerName');
+    const buyerPhone = getCookie('buyerPhone');
+    const buyerMail = getCookie('buyerMail');
+    const street = getCookie('street');
+    const houseNumber = getCookie('houseNumber');
+    const streetEsq = getCookie('streetEsq');
+    const reveiverName = getCookie('reveiverName');
+    const reveiverPhone = getCookie('reveiverPhone');
+
 
     useEffect(() =>{
         const getProducts = async () => {
@@ -88,6 +101,61 @@ export default function ProductRender({ params }: any) {
         //getChangeCurrency();
     }, []);
 
+    const addBuy = async () => {
+
+        var productString = '';
+
+        productListRef.current.map((product: any, index: number) => {
+            productString += `[${product.id}, ${product.name}]`
+            
+            if(productListRef.current.length - 1 > index){
+                productString += ', ';
+            }
+        });
+
+        console.log(JSON.stringify({
+            buyerName: buyerName,
+            buyerPhone: buyerPhone,
+            buyerMail: buyerMail,
+            street: street,
+            houseNumber: houseNumber,
+            streetEsq: streetEsq,
+            reveiverName: reveiverName,
+            reveiverPhone: reveiverPhone,
+            products: productString,
+            price: totalPriceRef.current,
+        }));
+
+        const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/addBuy', {
+            method: 'POST',
+            cache: 'no-store',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                buyerName: buyerName,
+                buyerPhone: buyerPhone,
+                buyerMail: buyerMail,
+                street: street,
+                houseNumber: houseNumber,
+                streetEsq: streetEsq,
+                reveiverName: reveiverName,
+                reveiverPhone: reveiverPhone,
+                products: productString,
+                price: totalPriceRef.current,
+            }),
+        });
+    
+        var result = await res.json();
+
+        console.log('dwadaw  ' + result);
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch data');
+        }
+    
+    }
+
     const paypalCreateOrder = async () => {
         console.log('weqdwaaaa ' + String(Math.round(Number(totalPriceRef.current / 40))));
         try {
@@ -111,6 +179,8 @@ export default function ProductRender({ params }: any) {
             orderID
             })
             if (response.data.success) {
+                console.log(`wadwdwa`);
+                await addBuy();
                 router.push('/thanks');
             // Order is successful
             // Your custom code
@@ -145,35 +215,35 @@ export default function ProductRender({ params }: any) {
                         <>
                             <div className="flex flex-row justify-between">
                                 <span className="mt-4 ml-4 text-left text-[12px] sms:text-[14px] text-black">Nombre del comprador:</span>
-                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{getCookie('buyerName') || ''}</span>
+                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{buyerName}</span>
                             </div>
                             <div className="flex flex-row justify-between">
                                 <span className="mt-4 ml-4 text-left text-[12px] sms:text-[14px] text-black">Número de teléfono del comprador:</span>
-                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{getCookie('buyerPhone') || ''}</span>
+                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{buyerPhone}</span>
                             </div>
                             <div className="flex flex-row justify-between">
                                 <span className="mt-4 ml-4 text-left text-[12px] sms:text-[14px] text-black">Mail del comprador:</span>
-                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{getCookie('buyerMail') || ''}</span>
+                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{buyerMail}</span>
                             </div>
                             <div className="flex flex-row justify-between">
                                 <span className="mt-4 ml-4 text-left text-[12px] sms:text-[14px] text-black">Calle de entrega:</span>
-                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{getCookie('street') || ''}</span>
+                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{street}</span>
                             </div>
                             <div className="flex flex-row justify-between">
                                 <span className="mt-4 ml-4 text-left text-[12px] sms:text-[14px] text-black">Número de puerta de entrega:</span>
-                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{getCookie('houseNumber') || ''}</span>
+                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{houseNumber}</span>
                             </div>
                             <div className="flex flex-row justify-between">
                                 <span className="mt-4 ml-4 text-left text-[12px] sms:text-[14px] text-black">Esquina de la calle de entrega:</span>
-                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{getCookie('streetEsq') || ''}</span>
+                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{streetEsq}</span>
                             </div>
                             <div className="flex flex-row justify-between">
                                 <span className="mt-4 ml-4 text-left text-[12px] sms:text-[14px] text-black">Nombre del receptor:</span>
-                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{getCookie('reveiverName') || ''}</span>
+                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{reveiverName}</span>
                             </div>
                             <div className="flex flex-row justify-between">
                                 <span className="mt-4 ml-4 text-left text-[12px] sms:text-[14px] text-black">Número de teléfono del receptor:</span>
-                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{getCookie('reveiverPhone') || ''}</span>
+                                <span className="mt-4 mr-4 text-left text-[12px] sms:text-[14px] text-black">{reveiverPhone}</span>
                             </div>
                         </>
                 }
