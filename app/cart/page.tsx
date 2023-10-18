@@ -27,14 +27,11 @@ export default function ProductRender({ params }: any) {
     const router = useRouter();
 
     useEffect(() =>{
-        console.log('fefe');
         const getProducts = async () => {
 
             const currentCartIds = JSON.parse(getCookie('cart') || '{}');
         
             const keysOfCurrentCartId: any = Object.keys(currentCartIds);
-        
-            console.log('dwdwadad ' + JSON.stringify(currentCartIds));
         
             const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getProducts', {
                 method: 'POST',
@@ -74,6 +71,14 @@ export default function ProductRender({ params }: any) {
         if(!hasLoaded) getProducts();
     });
 
+    const buyCart = () => {
+
+        const currentCartIds = JSON.parse(getCookie('cart') || '{}');
+        
+        const keysOfCurrentCartId: any = Object.keys(currentCartIds);
+
+        router.push(`/details?ids=${JSON.stringify(currentCartIds)}`);
+    };
     
     //const blurImageUrl = getBase64(`${BUCKET_URL}cat.webp`);
 
@@ -112,7 +117,7 @@ export default function ProductRender({ params }: any) {
                     }
                     {
                         (cartText == '') && 
-                            <button onClick={(e: any) => router.replace('/askLogin')} className="mt-6 w-full px-6 py-4 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none">
+                            <button onClick={buyCart} className="mt-6 w-full px-6 py-4 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none">
                                 <span>Comprar carrito</span>
                             </button>
                     }

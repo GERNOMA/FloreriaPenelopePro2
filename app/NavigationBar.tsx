@@ -8,12 +8,13 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Image from 'next/image';
 import { getServerSession } from "next-auth";
 import { options } from './api/auth/[...nextauth]/options';
- 
+import { useRouter } from "next/navigation";
 
 
 export default function NavigationBar({ categories, session }: any){
 
     const [movileNav, setMovileNav] = useState(false);
+    
     return (
         <nav className='bg-gray-100 fixed top-0 left-0 right-0 z-10'>
             <div className={movileNav

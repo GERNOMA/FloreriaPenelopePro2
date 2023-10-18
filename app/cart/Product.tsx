@@ -27,8 +27,6 @@ export default function Product({ product, /*blurUrl,*/ quantity, setHasLoaded }
         setCookie('cart', JSON.stringify(newCartIds))
     
         setHasLoaded(false);
-
-        console.log('dwadwadw    ' + getCookie('cart')); 
     };
 
     return (
