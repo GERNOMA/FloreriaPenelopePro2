@@ -3,7 +3,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { setCookie, getCookie } from 'cookies-next';   
 
-export default function loading(){
+export default function Details(){
 
     var [buyerName, setBuyerName] = useState(getCookie('buyerName') || '');
     var [buyerPhone, setBuyerPhone] = useState(getCookie('buyerPhone') || '');
