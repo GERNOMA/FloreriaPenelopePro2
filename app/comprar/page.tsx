@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
 import { useSearchParams } from 'next/navigation'
 import { setCookie, getCookie } from 'cookies-next';  
+import { useRouter } from "next/navigation";
 
 export default function ProductRender({ params }: any) {
 
@@ -102,13 +103,15 @@ export default function ProductRender({ params }: any) {
         }
     }
 
+    const router = useRouter();
+
     const paypalCaptureOrder = async (orderID: any) => {
         try {
             let response = await axios.post('/api/paypal/captureorder', {
             orderID
             })
             if (response.data.success) {
-                console.log('aaaaaaa');
+                router.push('/thanks');
             // Order is successful
             // Your custom code
 
