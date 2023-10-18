@@ -9,9 +9,12 @@ export default async function Handler(req: any, res: any) {
     return res.status(400).json({success: false, message: "Please Provide order_price And User ID"})
 
   try{
+    console.log('1122111');
     const PaypalClient = client()
+    console.log('33333333');
     //This code is lifted from https://github.com/paypal/Checkout-NodeJS-SDK
     const request = new paypal.orders.OrdersCreateRequest()
+    console.log('66666666');
     request.headers['prefer'] = 'return=representation'
     request.requestBody({
       intent: 'CAPTURE',
