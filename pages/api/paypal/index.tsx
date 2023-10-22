@@ -6,7 +6,7 @@ const configureEnvironment = function () {
 
   return process.env.NODE_ENV == 'production'
     ? new paypal.core.LiveEnvironment(clientId, clientSecret)
-    : new paypal.core.LiveEnvironment(clientId, clientSecret)
+    : new paypal.core.SandboxEnvironment(clientId, clientSecret)
 }
 
 const client = function () {

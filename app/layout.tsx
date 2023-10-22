@@ -45,6 +45,9 @@ export default async function RootLayout({
   
   return (
     <html lang='es'>
+      <head>
+        <link rel="icon" type="image/x-icon" href="/images/logoComp.ico" />
+      </head>
       <body className={inter.className}>
         <main>
           <ItemsCartContrextProvicer>
@@ -52,6 +55,33 @@ export default async function RootLayout({
             <div className='w-max h-20'></div>
             <CartIcon/>
             {children}
+            <footer className="bg-gray-800 text-white py-8 mt-8">
+              <div className="container mx-auto flex justify-between items-center">
+                  
+                  <div className="flex space-x-6">
+                      <a href="#" className="text-gray-300 hover:text-white">Inicio</a>
+                      <a href="#" className="text-gray-300 hover:text-white">Sobre nosotros</a>
+                      <a href="#" className="text-gray-300 hover:text-white">Contacto</a>
+                      <a href="#" className="text-gray-300 hover:text-white">Blog</a>
+                  </div>
+                  
+                  <div className="flex space-x-4">
+                      <a href="#" className="text-gray-300 hover:text-white">
+                          <i className="fab fa-facebook"></i>
+                      </a>
+                      <a href="#" className="text-gray-300 hover:text-white">
+                          <i className="fab fa-twitter"></i>
+                      </a>
+                      <a href="#" className="text-gray-300 hover:text-white">
+                          <i className="fab fa-instagram"></i>
+                      </a>
+                      <a href="#" className="text-gray-300 hover:text-white">
+                          <i className="fab fa-linkedin"></i>
+                      </a>
+                  </div>
+              </div>
+          </footer>
+
           </ItemsCartContrextProvicer>
         </main>
       </body>
