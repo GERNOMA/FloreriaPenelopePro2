@@ -25,6 +25,7 @@ export default function CreateProduct({ categories }: any){
     const router = useRouter();
 
     const uploadProduct = async () => {
+        
         const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/createProduct', {
             method: 'POST',
             cache: 'no-store',

@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ['latin'] });
 const BUCKET_URL = "https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/";
 
 async function getData() {
+
   const res = await fetch('https://6nnofqmbzl.execute-api.sa-east-1.amazonaws.com/floreriaWeb', {
     method: 'POST',
     cache: 'no-store'
@@ -46,8 +47,6 @@ export default function Home() {
       name: file.name,
       type: file.type,
     });
-
-    console.log(data);
 
     const url = data.url;
     let { data: newData } = await axios.put(url, file, {

@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import Product from "./Product";
 import { getServerSession } from 'next-auth/next'
 import { options } from '../../../api/auth/[...nextauth]/options';
+import excuteQuery from "@/app/db";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,22 +25,27 @@ var productBlurList: any = [];
 var productCategoryId = 0;
 
 async function getProducts() {
-  const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getProducts', {
+
+    var res = await excuteQuery({ query: 'SELECT * FROM products WHERE idCategory = ?', values: [productCategoryId] });
+
+    productList = res;
+
+    /*const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getProducts', {
     method: 'POST',
     cache: 'no-store',
     headers: {
         "Content-Type": "application/json",
     },
     body: JSON.stringify({ categoryId: productCategoryId }),
-  })
- 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
- 
-  var result = await res.json();
+    })
 
-  productList = result.contacts;
+    if (!res.ok) {
+    throw new Error('Failed to fetch data')
+    }
+
+    var result = await res.json();*/
+
+    //productList = result.contacts;
 }
 
 var blurImagesCount = 0;
@@ -66,15 +72,17 @@ export default async function ProductsRender({ params }: any) {
 
     //await getBlurImages();
 
-    const blurImageUrl = await getBase64(`${BUCKET_URL}cat.webp`);
+    //const blurImageUrl = await getBase64(`${BUCKET_URL}cat.webp`);
 
     const session = await getServerSession(options);
+
+    const timeStamp = new Date().getTime();
 
     return (
     <div className="sms:m-auto sms:max-w-[1500px] flex flex-col sms:flex-row flex-wrap justify-center">
         {/*productBlurList[index]*/
             productList.map((product: any, index: any) => {
-                return <Product key={product.id} product={product} blurUrl={blurImageUrl} session={session}/>
+                return <Product key={product.id} product={product} /*blurUrl={blurImageUrl}*/ session={session} timeStamp={timeStamp}/>
             })
         }
     </div>

@@ -8,6 +8,8 @@ import { options } from './api/auth/[...nextauth]/options'
 import CartIcon from './CartIcon'
 import ItemsCartContrextProvicer from './contexts/itemsCarContext';
 
+import excuteQuery from "@/app/db";
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -19,18 +21,24 @@ var categories: any;
 
 async function getCategories(){
 
-  const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getCategories', {
+  var res = await excuteQuery({ query: 'SELECT * FROM productsCategories', values: [] });
+  
+  console.log(res);
+
+  //console.log(resultss);
+
+  /*const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getCategories', {
       method: 'POST',
       cache: 'no-store'
   })
 
   if (!res.ok) {
       throw new Error('Failed to fetch data');
-  }
+  }*/
 
-  var result = await res.json();
+  //var result = JSON.parse(res);
 
-  categories = result.contacts;
+  categories = res;
 }
 
 export default async function RootLayout({

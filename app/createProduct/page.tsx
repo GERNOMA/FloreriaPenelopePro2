@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import CreateProduct from "./CreateProduct";
+import excuteQuery from "@/app/db";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,7 +14,11 @@ var categories: any;
 
 async function getCategories(){
 
-    const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getCategories', {
+    var res = await excuteQuery({ query: 'SELECT * FROM productsCategories', values: [] });
+
+    categories = res;
+
+    /*const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getCategories', {
         method: 'POST',
         cache: 'no-store'
     })
@@ -24,7 +29,7 @@ async function getCategories(){
 
     var result = await res.json();
 
-    categories = result.contacts;
+    categories = result.contacts;*/
 }
 
 export default async function Home() {

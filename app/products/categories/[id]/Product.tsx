@@ -10,11 +10,9 @@ import { useRouter } from 'next/navigation';
 
 const BUCKET_URL = "https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/";
 
-export default function Product({ product, blurUrl, session } : any) {
-
+export default function Product({ product, session, timeStamp } : any) {
+    
     const {id, name, description, price, imageName} = product || {};
-
-    const timeStamp = new Date().getTime()
 
     const router = useRouter();
 

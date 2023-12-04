@@ -25,13 +25,13 @@ export default function NavigationBar({ categories, session }: any){
                         <AiOutlineClose size={20}/>
                     </div>
                     <Link href='/' className='no-underline my-4' onClick={() => setMovileNav(!movileNav)}>
-                        Home
+                        Homea
                     </Link>
                     
                     {   
                         (session && session?.user?.name == "Alejandra Vicente") &&
                             <Link href='/createProduct' className='no-underline my-4'>
-                                Agregar
+                                Agregaar
                             </Link>
                     }
                     

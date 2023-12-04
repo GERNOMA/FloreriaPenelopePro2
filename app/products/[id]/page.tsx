@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import getBase64 from "../../utilities/getBase64";
 import Product from "./Product";
+import excuteQuery from "@/app/db";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,7 +18,12 @@ var file: any = null;
 var productList: any = [];
 
 async function getProducts(productId: BigInteger) {
-  const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getProducts', {
+  
+  var res = await excuteQuery({ query: 'SELECT * FROM products WHERE id = ?', values: [productId] });
+
+  productList = res;
+
+  /*const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/getProducts', {
     method: 'POST',
     cache: 'no-store',
     headers: {
@@ -32,7 +38,7 @@ async function getProducts(productId: BigInteger) {
  
   var result = await res.json();
 
-  productList = result.contacts;
+  productList = result.contacts;*/
 }
 
 export default async function ProductRender({ params }: any) {
