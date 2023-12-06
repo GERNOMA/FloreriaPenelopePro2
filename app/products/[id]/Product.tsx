@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const BUCKET_URL = "https://floreria-web-bucket.s3.sa-east-1.amazonaws.com/";
 
-export default function Product({ product, blurUrl } : any){
+export default function Product({ product } : any){
 
     const router = useRouter();
 

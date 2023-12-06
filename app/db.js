@@ -1,6 +1,6 @@
 import mysql from 'mysql';
 
-const db = mysql({
+const db = mysql.createConnection({
   host: 'db',
   port: 3306,
   database: 'fweb',
@@ -11,8 +11,14 @@ const db = mysql({
 export default async function excuteQuery({ query, values }) {
   
   try {
-    const results = await db.query(query, values);
-    await db.end();
+    let results = await new Promise(function(resolve, reject) {
+      db.query(query, values, function (err, rows, fields) {
+        if (err) {
+            return reject(err);
+        }
+        resolve(rows);
+      });
+    });
 
     const plainResults = results.map(result => {
         return Object.assign({}, result);
@@ -22,4 +28,5 @@ export default async function excuteQuery({ query, values }) {
   } catch (error) {
     return { error };
   }
+  
 }

@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import { get } from "http";
 import Link from "next/link";
 import Image from 'next/image';
-import getBase64 from "../../utilities/getBase64";
+//import getBase64 from "../../utilities/getBase64";
 import Product from "./Product";
 import excuteQuery from "@/app/db";
 
@@ -45,14 +45,14 @@ export default async function ProductRender({ params }: any) {
 
     await getProducts(params.id);
 
-    const blurImageUrl = await getBase64(`${BUCKET_URL}cat.webp`);
+    //const blurImageUrl = await getBase64(`${BUCKET_URL}cat.webp`);
 
     return (
     <div>
         <main>
         {
             productList.map((product: any) => {
-                return <Product key={product.id} product={product} blurUrl={blurImageUrl}/>
+                return <Product key={product.id} product={product} /*blurUrl={blurImageUrl}*//>
             })
         }
         </main>

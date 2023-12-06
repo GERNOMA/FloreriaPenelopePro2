@@ -1,4 +1,4 @@
-import { getPlaiceholder } from "plaiceholder";
+/*import { getPlaiceholder } from "plaiceholder";
 
 export default async function getBase64(url: any) {
 
@@ -13,4 +13,4 @@ export default async function getBase64(url: any) {
     const { base64 } = await getPlaiceholder(Buffer.from(buffer));
 
     return base64;
-}
+}*/
