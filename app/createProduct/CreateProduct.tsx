@@ -26,7 +26,7 @@ export default function CreateProduct({ categories }: any){
 
     const uploadProduct = async () => {
         
-        const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/createProduct', {
+        const res = await fetch('https://floreriapenelope.com/fapi/createProduct'/*'https://two70s4325.execute-api.sa-east-1.amazonaws.com/createProduct'*/, {
             method: 'POST',
             cache: 'no-store',
             headers: {
@@ -91,7 +91,7 @@ export default function CreateProduct({ categories }: any){
         if(titleCategoty != ''){
             setUploadingStatusCategory('Subiendo...');
 
-            const res = await fetch('https://two70s4325.execute-api.sa-east-1.amazonaws.com/createCategory', {
+            const res = await fetch('localhost:3333/createProduct'/*'https://two70s4325.execute-api.sa-east-1.amazonaws.com/createCategory'*/, {
                 method: 'POST',
                 cache: 'no-store',
                 headers: {

@@ -22,8 +22,20 @@ var categories: any;
 async function getCategories(){
 
   var res = await excuteQuery({ query: 'SELECT * FROM productsCategories', values: [] });
-  
-  console.log(res);
+
+  /*const res1 = await fetch('http://34.176.253.98:3333/createProduct', {
+    method: 'POST',
+    cache: 'no-store',
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        name: 'aaa'
+    }),
+  });
+
+  const data = await res1.json();
+  console.log('Response data:', data);;*/
 
   //console.log(resultss);
 
@@ -56,14 +68,16 @@ export default async function RootLayout({
       <head>
         <link rel="icon" type="image/x-icon" href="/images/logoComp.ico" />
       </head>
-      <body className={inter.className}>
-        <main>
+      <body className={inter.className+' flex flex-col min-h-screen'}>
+        <main className="flex-grow">
           <ItemsCartContrextProvicer>
             <NavigationBar categories={categories} session={session}/>
             <div className='w-max h-20'></div>
             <CartIcon/>
             {children}
-            <footer className="bg-gray-800 text-white py-8 mt-8">
+          </ItemsCartContrextProvicer>
+        </main>
+        <footer className="bg-gray-800 text-white py-8 mt-8">
               <div className="container mx-auto flex justify-between items-center">
                   
                   <div className="flex space-x-6">
@@ -89,9 +103,6 @@ export default async function RootLayout({
                   </div>
               </div>
           </footer>
-
-          </ItemsCartContrextProvicer>
-        </main>
       </body>
     </html>
   );
